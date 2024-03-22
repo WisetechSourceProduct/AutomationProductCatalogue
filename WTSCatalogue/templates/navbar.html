@@ -1,0 +1,36 @@
+{% load static %}
+<link rel="stylesheet" href="{% static 'css/navbar_blink.css' %}">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=ABeeZee:ital@0;1&display=swap" rel="stylesheet">
+
+<nav class="navbar navbar-expand-lg bg-light">
+    <div class="container-fluid" style="font-family:'ABeeZee',sans-serif;font-weight:700;">
+      <a class="navbar-brand" href="#" style="margin-left:100px;padding: 1px;"><img src="{% static 'images/WTS_Logo.png' %}" alt="WTS" width="100" height="40"></a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarScroll" aria-controls="navbarScroll" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarScroll">
+        <ul class="navbar-nav ms-auto navbar-nav-scroll blink-text-menu" style="--bs-scroll-height: 100px;">
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="#">Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Products</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">About&nbsp;Us</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Contact&#160;Us</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+  <script src="{% static 'js/home_page/navbar_blink.js' %}"></script>
+
+
+
+  
