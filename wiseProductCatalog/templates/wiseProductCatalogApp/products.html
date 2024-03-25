@@ -3,9 +3,9 @@
 {% block title %}
 WTS|Products
 {% endblock %}
+
+
 {% block body %}
-
-
 
 {% include "navbar.html" %}
 {% include 'wiseProductCatalogApp/background.html' %}
@@ -115,5 +115,10 @@ WTS|Products
         </div>
         <!-- Service End -->
         <br>
+        <script>
+            $(document).ready(function () {
+                $(".container-fluid").hide().fadeIn(2500);
+            });
+        </script>
         {% include 'footer.html' %}
 {% endblock body %}
