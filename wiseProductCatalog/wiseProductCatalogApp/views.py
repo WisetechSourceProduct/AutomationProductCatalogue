@@ -11,4 +11,5 @@ def home(request):
     return render(request, "wiseProductCatalogApp/home.html",{"excel_data":content} )
 
 def products(request):
+    print("abcd")
     return render(request,"wiseProductCatalogApp/products.html")
