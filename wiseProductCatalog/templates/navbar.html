@@ -46,17 +46,17 @@
 
 <nav class="navbar navbar-expand-lg bg-light" style="padding:20px;">
     <div class="container-fluid" style="font-family:'ABeeZee',sans-serif;font-weight:700;">
-      <a class="navbar-brand" href="#" style="margin-left:30px;padding: 1px;"><img src="{% static 'images/WTS_Logo.png' %}" alt="WTS" width="100" height="40"></a>
+      <a class="navbar-brand" href="{% url 'home' %}" style="margin-left:30px;padding: 1px;"><img src="{% static 'images/WTS_Logo.png' %}" alt="WTS" width="100" height="40"></a>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarScroll" aria-controls="navbarScroll" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
       <div class="collapse navbar-collapse" id="navbarScroll">
         <ul class="navbar-nav ms-auto navbar-nav-scroll blink-text-menu" style="--bs-scroll-height: 100px;">
           <li class="nav-item">
-            <a class="nav-link" aria-current="page" href="#" style="font-family:timesnewroman; font-size:20px;">{{ excel_data.wiseHome }}</a>
+            <a class="nav-link" aria-current="page" href="{% url 'home' %}" style="font-family:timesnewroman; font-size:20px;">{{ excel_data.wiseHome }}</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="{% url "products" %}" style="font-family:timesnewroman; font-size:20px;">{{ excel_data.wiseProducts }}</a>
+            <a class="nav-link" href="{% url 'products' %}" style="font-family:timesnewroman; font-size:20px;">{{ excel_data.wiseProducts }}</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="#" style="font-family:timesnewroman; font-size:20px;">{{ excel_data.wiseAboutUs }}</a>
