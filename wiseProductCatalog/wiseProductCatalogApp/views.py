@@ -4,7 +4,7 @@ import pandas as pd
 # Create your views here.
 def home(request):
 
-    df = pd.read_excel("C:/Users/harih/Desktop/Django/wiseProductCatalog/static/required_documents/testSheet.xlsx", header=None)
+    df = pd.read_excel("https://github.com/WisetechSourceProduct/AutomationProductCatalogue/blob/main/wiseProductCatalog/static/required_documents/testSheet.xlsx", header=None)
     
     content = dict(zip(df[0], df[1])) # Convert excel file into dict format
     
