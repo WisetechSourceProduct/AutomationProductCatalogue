@@ -49,3 +49,9 @@
 .service-item .service-content-icon a.btn-primary {
     transition: 1s !important;
 }
+
+/*** Footer Start ***/
+.footer .footer-item a.text-body:hover {
+    color: var(--bs-primary) !important;
+}
+/*** Footer End ***/
