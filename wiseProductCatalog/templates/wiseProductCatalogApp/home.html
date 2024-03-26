@@ -33,7 +33,7 @@ WTS|Home
 {% include 'navbar.html' %}
 {% include 'wiseProductCatalogApp/background.html' %}
 
-<section class="section1" style="height: 100vh !important;">
+<section class="section1">
   <div class="container" style="font-family:timesnewroman;">
     <div class="row">
       <div id="three-container" class="col-md-6" data-value="{{excel_data.wiseGif1}}"></div>
@@ -53,8 +53,12 @@ WTS|Home
       </div>
     </div>
   </div>
+  
 </section>
-{% include 'footer.html' %}
+<div class="continer" style="color:white;position:fixed;bottom: 0;width: 100%;">
+  <p style="text-align: center;">Copyright &#169; {{excel_data.copyRights}}. All Rights Reserved.</p>
+</div>
+
 
   <!--Code for Gif animation-->
   <script>
