@@ -15,5 +15,5 @@ def products(request):
     df = pd.read_excel(excel_file_path, header=None)
     content = dict(zip(df[0], df[1])) # Convert excel file into dict format
     print(content)
-    print("Content")
+    print(content)
     return render(request,"wiseProductCatalogApp/products.html",{"excel_data":content})
