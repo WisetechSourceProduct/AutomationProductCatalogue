@@ -2,14 +2,13 @@
     .text-primary{
     color: #033e9c; 
     background-image: -webkit-linear-gradient(0deg, #033e9c 34%, #2e7ae6 76%); 
-    background-clip: text; 
     -webkit-background-clip: text; 
     text-fill-color: transparent; 
     -webkit-text-fill-color: transparent;
     }
         
 </style>
-<div class="container-fluid footer foot py-9 my-6 mb-0 bg-light-subtle wow bounceInUp text-center"style = "padding :1%" data-wow-delay="0.1s">
+<div class="container-fluid footer foot py-9 my-6 mb-0 wow bounceInUp text-center" style = "padding :1%;background-color:#eae0c8;" data-wow-delay="0.1s">
     <div class="container">
         <div class="row">
             <div class="col-lg-6 col-md-10">
@@ -17,17 +16,17 @@
                     <h1 class="text-primary"  style="font-family:timesnewroman;" >WiseTech<span class="text-dark">Source</span></h1>
                     <p class="lh-lg mb-4" style="font-family:arial">We promise it will be worth the wait</p>
                     <div class="footer-icon d-flex justify-content-center">
-                        <a href= "https://www.wisetechsource.com/" class="btn btn-primary btn-sm-square me-2 rounded-circle" style="position: relative;"><i class="bi bi-link-45deg"></i></a>
-                        <a class="btn btn-primary btn-sm-square me-2 rounded-circle" href="https://twitter.com/SourceWisetech"  style="position: relative;"><i class="fab fa-twitter"></i></a>
-                        <a href="https://www.facebook.com/WiseTechSource/" class="btn btn-primary btn-sm-square me-2 rounded-circle"  style="position: relative;"><i class="fab fa-facebook"></i></a>
-                        <a href="https://in.linkedin.com/company/wisetech-source-pvt-ltd" class="btn btn-primary btn-sm-square rounded-circle"  style="position: relative;"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="{{excel_data.wiseLinkFooter}}" class="btn btn-primary btn-sm-square me-2 rounded-circle"  style="position: relative;"><i class="bi bi-link-45deg"></i></a>
+                        <a href= "{{excel_data.facebookLogo}}" class="btn btn-primary btn-sm-square me-2 rounded-circle" style="position: relative;"><i class="fab fa-facebook"></i></a>
+                        <a class="btn btn-primary btn-sm-square me-2 rounded-circle" href="{{excel_data.twitterLogo}}"  style="position: relative;"><i class="fab fa-twitter"></i></a>
+                        <a href="{{excel_data.linkedinLogo}}" class="btn btn-primary btn-sm-square rounded-circle"  style="position: relative;"><i class="fab fa-linkedin-in"></i></a>
                     </div>
                 </div>
             </div>
             <br>
             <div class="col-lg-6 col-md-18">
                 <div class="footer-item">
-                    <h4 class="mb-6" style="font-family:timesnewroman;">Contact Us</h4>
+                    <h4 class="text-primary" style="font-family:timesnewroman;">Contact Us</h4>
                     <div class="d-flex flex-column align-items-start " style= "margin-left : 38%;font-family:arial">
                         <p><i class="fa fa-map-marker-alt text-primary me-2"></i>xxxxx</p>
                         <p><i class="fa fa-phone-alt text-primary me-2"></i>xxxxxx</p>
