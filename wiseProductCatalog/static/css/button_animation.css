@@ -30,7 +30,7 @@ button.learn-more .circle {
   margin: 0;
   width: 3rem;
   height: 3rem;
-  background: #282936;
+  background: #000000;
   border-radius: 1.625rem;
 }
 button.learn-more .circle .icon {
@@ -82,5 +82,5 @@ button:hover .circle .icon.arrow {
   transform: translate(1rem, 0);
 }
 button:hover .button-text {
-  color: rgb(181, 181, 250);
+  color: rgb(255, 255, 255);
 }
