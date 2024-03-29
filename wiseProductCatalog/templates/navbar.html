@@ -9,13 +9,11 @@
       display: table;
       margin: 10px;
       border-radius: 8px;
-      
   }
   ul li {
       list-style: none;
       display: inline-block;
       margin-left: 50px;
-      
   }
   ul li a {
       font-family: arial;
@@ -24,11 +22,9 @@
       margin-left:10px;
       font-size: 18px;
       display: block;
-     
   }
   ul li a + a {
       margin-left: 16px;
-     
   }
   ul li a::after {
       content: '';
@@ -45,18 +41,25 @@
   ul a:hover::after {
       transform-origin: bottom left;
       transform: scaleX(1);
-
   }
 </style>
 
-<nav class="navbar navbar-expand-lg " style="padding:20px; background-color:#f5f5dc ";>
+<nav class="navbar navbar-expand-lg bg-light" style="padding:20px;">
     <div class="container-fluid" style="font-family:'ABeeZee',sans-serif;font-weight:700;">
-      <a class="navbar-brand" href="{% url 'home' %}" style="margin-left:30px;padding: 1px; background-color:#f5f5dc;"><img src="{% static 'images/WTS_Logo.png' %}" alt="WTS" width="100" height="40"></a>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarScroll" aria-controls="navbarScroll" aria-expanded="false" aria-label="Toggle navigation" style = "background-color:#f5f5dc;">
+      <a class="navbar-brand" href="{% url 'home' %}" style="margin-left:30px;padding: 1px;"><img src="{% static 'images/WTS_Logo.png' %}" alt="WTS" width="100" height="40"></a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarScroll" aria-controls="navbarScroll" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
       <div class="collapse navbar-collapse" id="navbarScroll">
         <ul class="navbar-nav ms-auto navbar-nav-scroll blink-text-menu" style="--bs-scroll-height: 100px;">
+          <!--
+          {% for i in excel_navbar %}
+            <li class="nav-item">
+              <a class="nav-link" aria-current="page" href="{% url 'home' %}" style="font-family:timesnewroman; font-size:20px;">{{ i }}</a>
+            </li>
+          {% endfor %}
+          -->
+          
           <li class="nav-item">
             <a class="nav-link" aria-current="page" href="{% url 'home' %}" style="font-family:timesnewroman; font-size:20px;">{{ excel_data.wiseHome }}</a>
           </li>
@@ -69,11 +72,8 @@
           <li class="nav-item">
             <a class="nav-link" href="#" style="font-family:timesnewroman; font-size:20px;">{{ excel_data.wiseContactUs }}</a>
           </li>
+        
         </ul>
       </div>
     </div>
   </nav>
-
-
-
-  
