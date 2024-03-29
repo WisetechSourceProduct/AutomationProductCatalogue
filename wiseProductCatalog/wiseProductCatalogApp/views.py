@@ -52,13 +52,9 @@ def products(request):
 
     for index, row in products_dataframe_fillna.iterrows():
         if row[excel_header[1]].rstrip(" \n") not in products_dict:
-
             if row[excel_header[2]] != "None":
                 products_logo_dict[row[excel_header[1]].rstrip(" \n")] = row[excel_header[2]] # Coding for logo dictionary
-            
             products_dict[row[excel_header[1]].rstrip(" \n")] = {}
-            if row[excel_header[2]] != "None":
-                products_dict[row[excel_header[1]].rstrip(" \n")][excel_header[2]] = row[excel_header[2]]
             products_dict[row[excel_header[1]].rstrip(" \n")][row[excel_header[4]]] = [*row[5:]]
         else:
             products_dict[row[excel_header[1]].rstrip(" \n")][row[excel_header[4]]] = [*row[5:]]
