@@ -68,3 +68,7 @@ def products(request):
     """
 
     return render(request,"wiseProductCatalogApp/products.html",{"excel_data":content, "main_sector":products_dict.keys(), "main_sector_logo":products_logo_dict})
+
+
+def subproducts(request):
+    return render(request,"wiseProductCatalogApp/subproducts.html")
