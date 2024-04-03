@@ -18,6 +18,28 @@ WTS|Products
         </div>
         <div class="container">
             <div class="row g-5">
+
+                {% for key, values in subproducts.items %}
+                    <div class="col-md-6 col-lg-4 wow fadeIn" data-wow-delay=".3s">
+                        <div class="project-item">
+                            <div class="project-img">
+                                <img src="{% static 'images/project-1.jpg' %}" class="img-fluid w-100 rounded" alt="">
+                                {% for i in values %}
+                                <h4>{{i}}</h4>
+                                {% endfor %}
+                                
+                                <div class="project-content">
+                                    <a href="#" class="text-center">
+                                        <h4 class="text-secondary">Web design</h4>
+                                        <p class="m-0 text-white">Web Analysis</p>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
+
+                <!--
                 <div class="col-md-6 col-lg-4 wow fadeIn" data-wow-delay=".3s">
                     <div class="project-item">
                         <div class="project-img">
@@ -83,6 +105,8 @@ WTS|Products
                         </div>
                     </div>
                 </div>
+
+                -->
             </div>
         </div>
     </div>
