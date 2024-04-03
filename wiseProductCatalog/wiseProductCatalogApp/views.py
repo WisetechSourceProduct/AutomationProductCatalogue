@@ -42,7 +42,11 @@ def products_dict_maker():
 
     #print(products_dict)
     #print(products_logo_dict)
-
+    """        
+    for i in products_dict:
+        for k in products_dict[i]:
+            print(products_dict[i][k][1])
+    """
     return products_dict, products_logo_dict
     
 
@@ -69,41 +73,8 @@ def home(request):
 
 def products(request):
 
-    """
-
-    products_dict = {}
-    products_logo_dict = {}
-    excel_header = []
-    
-    content = dict_maker(excel_file_path) # Convert excel file into dict format
-
-    products_dataframe = pd.read_excel(excel_file_path, sheet_name="Products")
-    for i in products_dataframe:
-        excel_header.append(i)
-
-    products_dataframe_fillna = products_dataframe.fillna("None")
-    products_dataframe_fillna[excel_header[1]] =  products_dataframe[excel_header[1]].ffill() # it fills NaN value with previous row data
-
-    for index, row in products_dataframe_fillna.iterrows():
-        if row[excel_header[1]].rstrip(" \n") not in products_dict:
-            if row[excel_header[2]] != "None":
-                products_logo_dict[row[excel_header[1]].rstrip(" \n")] = row[excel_header[2]] # Coding for logo dictionary
-            products_dict[row[excel_header[1]].rstrip(" \n")] = {}
-            products_dict[row[excel_header[1]].rstrip(" \n")][row[excel_header[4]]] = [*row[5:]]
-        else:
-            products_dict[row[excel_header[1]].rstrip(" \n")][row[excel_header[4]]] = [*row[5:]]
-    print(products_dict)
-    #print(products_logo_dict)
-    """
     products_dictionary = products_dict_maker()
     content = dict_maker(excel_file_path) # Convert excel file into dict format
-
-    """        
-    for i in products_dict:
-        for k in products_dict[i]:
-            print(products_dict[i][k][1])
-    """
-
     return render(request,"wiseProductCatalogApp/products.html",{"excel_data":content, "main_sector":products_dictionary[0].keys(), "main_sector_logo":products_dictionary[1]})
 
 
@@ -111,6 +82,5 @@ def subproducts(request, product_name):
 
     content = dict_maker(excel_file_path) # Convert excel file into dict format
     products_dictionary = products_dict_maker()
-    #print(products_dictionary[0].get(product_name)) 
     subproducts_name = products_dictionary[0].get(product_name) # Have to handle error on this area. If the key not found what will be the web page design
     return render(request,"wiseProductCatalogApp/subproducts.html", {"excel_data":content, "subproducts":subproducts_name})
