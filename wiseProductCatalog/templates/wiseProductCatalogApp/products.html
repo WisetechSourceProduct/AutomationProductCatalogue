@@ -9,12 +9,17 @@ WTS|Products
 
 {% include "navbar.html" %}
 {% include 'wiseProductCatalogApp/background.html' %}
+
+<link href="https://fonts.googleapis.com/css2?family=Alegreya:ital,wght@0,400..900;1,400..900&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Bitter:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+
+
     <!-- Service Start -->
     <div class="container-fluid service py-4">
         <div class="container">
             <div class="text-center wow bounceInUp" data-wow-delay="0.4s">
                 <small class="d-inline-block fw-bold text-dark text-uppercase bg-light border border-primary rounded-pill px-4 py-1 mb-3" style="font-family:timesnewroman;">{{excel_data.companyName}}</small>
-                <h1 class="display-5 mb-5" style="font-family:timesnewroman;color:white;">{{excel_data.subHeadingMain1}}</h1>
+                <h1 class="display-5 mb-5" style="font-family:Alegreya;color:white;">{{excel_data.subHeadingMain1}}</h1>
             </div>
             <div class="row g-3">
 
@@ -34,7 +39,7 @@ WTS|Products
                                     {% endif %}
                                     
                                     
-                                    <h4 class="mb-3" style="font-family:timesnewroman;">{{key}}</h4>
+                                    <h4 class="mb-3" style="font-family:Bitter;">{{key}}</h4>
                                     <a href="{% url 'subproducts' key %}" class="btn btn-primary px-4 py-2 rounded-pill">Read More</a>
                                 </div>
                             </div>
