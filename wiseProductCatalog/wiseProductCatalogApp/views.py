@@ -1,8 +1,9 @@
 from django.shortcuts import render
 import pandas as pd
+import re
 
 excel_file_path = "https://github.com/WisetechSourceProduct/AutomationProductCatalogue/raw/main/wiseProductCatalog/static/required_documents/wiseProductCatalogContentSheet.xlsx"
-# excel_file_path = "C:/Users/harih/Desktop/testSheet.xlsx"
+#excel_file_path = "C:/Users/harih/OneDrive/Desktop/testSheet.xlsx"
 
 
 def excel_sheet_finder(excel_file):
@@ -49,15 +50,10 @@ def products_dict_maker():
     """
     return products_dict, products_logo_dict
     
-
-
-
-# Create your views here.
-def home(request):
-
-    content = dict_maker(excel_file_path)
-
-    # Code for Navbar listing and findings
+    
+def navbar_list_maker(): # This function need to be deleted after the evaluation.
+    
+    # Code for Navbar listing and findings 
     wiseNavbar_list = []
     excelSheet_header= []
 
@@ -68,7 +64,15 @@ def home(request):
         if row[excelSheet_header[0]] == "wiseNavbar":
             wiseNavbar_list.append(row[excelSheet_header[1]])
 
-    return render(request, "wiseProductCatalogApp/home.html", {"excel_data":content, "excel_navbar":wiseNavbar_list})
+    return wiseNavbar_list
+
+
+
+# Create your views here.
+def home(request):
+
+    content = dict_maker(excel_file_path)
+    return render(request, "wiseProductCatalogApp/home.html", {"excel_data":content, "excel_navbar":navbar_list_maker()}) # `excel_navbar` need to be removed after removing `navbar_list_maker` function
 
 
 def products(request):

@@ -1,3 +1,4 @@
+
 {% extends 'base.html' %}
 {% load static %}
 
@@ -36,10 +37,10 @@ WTS|Home
 <section class="section1">
   <div class="container" style="font-family:timesnewroman;">
     <div class="row">
-      <div class="col-6" style="margin-left:0px;">
+      <div class="col-lg-6 col-sm-12" id="gif-animation" style="height:500px;width:600px">
         <div id="three-container" data-value="{{excel_data.wiseGif1}}"></div>
       </div>
-      <div class="col-6" style="margin-top:150px;text-align:center;color:white">
+      <div class="col-lg-6 col-sm-12" style="margin-top:150px;text-align:center;color:white;">
         <h1 style="color:white;font-size:11;font-weight:bold;font-family:timesnewroman;margin-top:50px;" >{{ excel_data.wiseHeadingHome1 }}</h1>
         <h5 style="font-size:18px;font-family:timesnewroman;margin-top:30px;color:white;">{{ excel_data.wiseSubContentHome1 }}</h5>
 
@@ -53,13 +54,17 @@ WTS|Home
     </div>
   </div>
 </section>
+
 <br><br><br><br><br><br><br><br><br><br>
 {% include "footer.html" %}
 
   <!--Code for Gif animation-->
   <script>
     window.onload = init;
-    var gif_content = $("#three-container").data("value")
+    var gif_content = $("#three-container").data("value"); // To change the gif content
+    var animation_width = $("#gif-animation").outerWidth();
+    var animation_height = $("#gif-animation").outerHeight();
+
 
     function init() {
       var root = new THREERoot({
@@ -67,7 +72,7 @@ WTS|Home
         antialias: (window.devicePixelRatio === 1),
         fov: 60
       });
-
+      
       root.renderer.setClearColor(0xffffff, 0); // To change the background color
 
       root.renderer.setPixelRatio(window.devicePixelRatio || 1);
@@ -93,14 +98,11 @@ WTS|Home
       tl.fromTo(textAnimation.rotation, 4, { y: 0 }, { y: Math.PI * 2, ease: Power1.easeInOut }, 0);
 
       createTweenScrubber(tl);
-    }
-
-    //var gif_content = 'We make the future easy with Automation' // To change the gif content
-  
+    }  
     
 
     function createTextAnimation() {
-      var geometry = generateTextGeometry(gif_content, { //To change the content
+      var geometry = generateTextGeometry(gif_content, { //To change the content {note: length of given string upto 60 character will be suitable, we have to change the camera angle for further words adding}
         size: 30,
         height: 12,
         font: 'droid sans',
@@ -313,10 +315,11 @@ WTS|Home
         this.renderer.render(this.scene, this.camera);
       },
       resize: function () {
-        this.camera.aspect = window.innerWidth / window.innerHeight;
+        this.camera.aspect =  1000 / 500;  // To see the full words clearly we can change camera angles.
         this.camera.updateProjectionMatrix();
         //this.renderer.setSize(window.innerWidth, window.innerHeight); //default size
-        this.renderer.setSize(500,500);  //To change the size
+        //this.renderer.setSize(700,500);  //To change the size
+        this.renderer.setSize(animation_width,animation_height) // It takes div width and height
       }
     };
 

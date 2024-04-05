@@ -9,11 +9,18 @@ WTS|Products
 {% include 'wiseProductCatalogApp/background.html' %}
 {% include "navbar.html" %}
 
+{% comment %} Google font {% endcomment %}
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Alegreya:ital,wght@0,400..900;1,400..900&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Bitter:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+
+{% comment %} Products page start {% endcomment %}
 <div class="container-fluid project py-5 mb-5">
     <div class="container">
         <div class="text-center mx-auto pb-5 wow fadeIn" data-wow-delay=".3s" style="max-width: 700px;">
-            <h1 class="text-primary" style="font-family:timesnewroman;">{{excel_data.wiseProjectHeading1}}</h1>
-            <h5 style="font-family:timesnewroman;color:white;">{{excel_data.wiseProjectTagline1}}</h5>
+            <h1 class="text-primary" style="font-family:Nunito;">{{excel_data.wiseProjectHeading1}}</h1><hr>
+            <h4 style="font-style: normal;font-family:Alegreya;color:white;font-size:36px;">{{excel_data.wiseProjectTagline1}}</h4>
         </div>
         <div class="container">
             <div class="row g-5">
@@ -25,7 +32,7 @@ WTS|Products
                                 <img src="{% static 'images/AI Data Extractor.png' %}" style = " height:299px;"  class="img-fluid w-100 rounded" alt="">
                                 <div class="project-content">
                                     <a href="#" class="text-center">
-                                        <h4 class="text-secondary" style="font-family:timesnewroman;font-size:19px;">{{key}}</h4>
+                                        <h4 class="text-secondary" style="font-family:Bitter;font-size:19px;">{{key}}</h4>
                                         <!--<p class="m-0 text-white">Web Analysis</p>-->
                                     </a>
                                 </div>
@@ -39,5 +46,6 @@ WTS|Products
     </div>
 </div>
 
+{% comment %} Product page End {% endcomment %}
 {% include 'footer.html' %}
 {% endblock body %}
