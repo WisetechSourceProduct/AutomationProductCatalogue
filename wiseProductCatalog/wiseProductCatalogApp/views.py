@@ -2,8 +2,8 @@ from django.shortcuts import render
 import pandas as pd
 import re
 
-excel_file_path = "https://github.com/WisetechSourceProduct/AutomationProductCatalogue/raw/main/wiseProductCatalog/static/required_documents/wiseProductCatalogContentSheet.xlsx"
- # excel_file_path = "C:/Users/harih/OneDrive/Desktop/testSheet.xlsx"
+#excel_file_path = "https://github.com/WisetechSourceProduct/AutomationProductCatalogue/raw/main/wiseProductCatalog/static/required_documents/wiseProductCatalogContentSheet.xlsx"
+excel_file_path = "C:/Users/harih/OneDrive/Desktop/testSheet.xlsx"
 
 
 def excel_sheet_finder(excel_file):
@@ -72,10 +72,7 @@ def navbar_list_maker(): # This function need to be deleted after the evaluation
 def home(request):
 
     content = dict_maker(excel_file_path)
-    print(content.get("wiseLogo"))
-    wanted_link = re.findall("/[A-Za-z0-9\_\-]{5,}/",content.get("wiseLogo"))
-    print(wanted_link)
-    return render(request, "wiseProductCatalogApp/home.html", {"excel_data":content, "excel_navbar":navbar_list_maker(), "wanted_link":wanted_link[0]}) # `excel_navbar`` need to be removed after removing `navbar_list_maker` function
+    return render(request, "wiseProductCatalogApp/home.html", {"excel_data":content, "excel_navbar":navbar_list_maker()}) # `excel_navbar` need to be removed after removing `navbar_list_maker` function
 
 
 def products(request):
