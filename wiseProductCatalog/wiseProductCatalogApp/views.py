@@ -1,9 +1,9 @@
 from django.shortcuts import render
 import pandas as pd
-import re
 
-excel_file_path = "https://github.com/WisetechSourceProduct/AutomationProductCatalogue/raw/main/wiseProductCatalog/static/required_documents/wiseProductCatalogContentSheet.xlsx"
-#excel_file_path = "C:/Users/harih/OneDrive/Desktop/testSheet.xlsx"
+# excel_file_path = "https://github.com/WisetechSourceProduct/AutomationProductCatalogue/raw/main/wiseProductCatalog/static/required_documents/wiseProductCatalogContentSheet.xlsx"
+excel_file_path = "C:/Users/harih/OneDrive/Desktop/testSheet.xlsx"
+
 
 
 def excel_sheet_finder(excel_file):
