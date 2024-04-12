@@ -3,8 +3,9 @@
 {% load drive_url_tags %}
 <html>
     <head>
-        <!--<link rel="icon" href="{{wiseTabLogo | url_convertor}}">-->
-        <link rel="icon" href="{{wiseTabLogo|url_convertor}}">
+        <!-- Browser Tab icon-->
+        <link rel="icon" href="{{excel_data.wiseTabLogo|url_convertor}}">
+
         <title>
         {% block title %}
         {% endblock %}
