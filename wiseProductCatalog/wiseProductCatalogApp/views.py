@@ -2,7 +2,11 @@ from django.shortcuts import render
 import pandas as pd
 
 excel_file_path = "https://github.com/WisetechSourceProduct/AutomationProductCatalogue/raw/main/wiseProductCatalog/static/required_documents/wiseProductCatalogContentSheet.xlsx"
+<<<<<<< HEAD
 # excel_file_path = "C:/Users/harih/OneDrive/Desktop/testSheet.xlsx"
+=======
+#excel_file_path = "C:/Users/harih/OneDrive/Desktop/testSheet.xlsx"
+>>>>>>> 641dbff8579a3d830047eea54e7cc9a7d275b11d
 
 
 

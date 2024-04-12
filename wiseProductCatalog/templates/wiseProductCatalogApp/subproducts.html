@@ -8,6 +8,7 @@ WTS|Products
 
 
 {% block body %}
+
 {% include 'wiseProductCatalogApp/background.html' %}
 {% include "navbar.html" %}
 
@@ -30,7 +31,7 @@ WTS|Products
                         <div class="project-item">
                             <div class="project-img">
                                 <!--<img src="{% static 'images/AI Data Extractor.png' %}" style="height:299px;" class="img-fluid w-100 rounded" alt="">-->
-                                <img {% if values.0 != 'None' %} src="{{values.0|url_convertor}}"{% else %} src="" {% endif %} style="height:299px;" class="img-fluid w-100 rounded" alt="">
+                                <img {% if values.0 != 'None' %} src="{{values.0|url_convertor}}"{% else %} src="{{excel_data.wiseSubProductsDefaultImage | url_convertor}}" {% endif %} style="height:299px;" class="img-fluid w-100 rounded" alt="">
                                 <div class="project-content">
                                     <a href="#" class="text-center">
                                         <h4 class="text-secondary" style="font-family:Bitter;font-size:19px;">{{key}}</h4>
@@ -41,8 +42,8 @@ WTS|Products
                         </div>
                     </div>
                 {% endfor %}
+                
             </div>
-
         </div>
     </div>
 </div>
