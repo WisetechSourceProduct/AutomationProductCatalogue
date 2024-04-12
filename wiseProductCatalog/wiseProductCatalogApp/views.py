@@ -1,8 +1,8 @@
 from django.shortcuts import render
 import pandas as pd
 
-# excel_file_path = "https://github.com/WisetechSourceProduct/AutomationProductCatalogue/raw/main/wiseProductCatalog/static/required_documents/wiseProductCatalogContentSheet.xlsx"
-excel_file_path = "C:/Users/harih/OneDrive/Desktop/testSheet.xlsx"
+excel_file_path = "https://github.com/WisetechSourceProduct/AutomationProductCatalogue/raw/main/wiseProductCatalog/static/required_documents/wiseProductCatalogContentSheet.xlsx"
+# excel_file_path = "C:/Users/harih/OneDrive/Desktop/testSheet.xlsx"
 
 
 
@@ -88,3 +88,6 @@ def subproducts(request, product_name):
     products_dictionary = products_dict_maker()
     subproducts_name = products_dictionary[0].get(product_name) # Have to handle error on this area. If the key not found what will be the web page design
     return render(request,"wiseProductCatalogApp/subproducts.html", {"excel_data":content, "subproducts":subproducts_name})
+
+def productdetails(request):
+    return render (request,"wiseProductCatalogApp/productsdetail.html")
