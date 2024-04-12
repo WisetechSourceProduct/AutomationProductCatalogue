@@ -1,7 +1,9 @@
 <!DOCTYPE html>
 {% load static %}
+{% load drive_url_tags %}
 <html>
     <head>
+        <link rel="icon" href="{{wiseTabLogo | url_convertor}}">
         <title>
         {% block title %}
         {% endblock %}
