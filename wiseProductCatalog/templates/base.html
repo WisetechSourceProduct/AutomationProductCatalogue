@@ -1,7 +1,11 @@
 <!DOCTYPE html>
 {% load static %}
+{% load drive_url_tags %}
 <html>
     <head>
+        <!-- Browser Tab icon-->
+        <link rel="icon" href="{{excel_data.wiseTabLogo|url_convertor}}">
+
         <title>
         {% block title %}
         {% endblock %}
