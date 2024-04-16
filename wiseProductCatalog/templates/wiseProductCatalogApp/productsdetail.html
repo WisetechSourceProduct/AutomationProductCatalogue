@@ -13,21 +13,35 @@ WTS|Products
 <link href="https://fonts.googleapis.com/css2?family=Bitter:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
 
 <style>
-    /* Adjusting the size of the carousel control buttons */
-    .carousel-control-prev-icon,
-    .carousel-control-next-icon {
-        width: 30px; /* Adjust width as needed */
-        height: 30px; /* Adjust height as needed */
-    }
-    
-    /* Optional: Adjusting the position of the control buttons */
-    .carousel-control-prev,
-    .carousel-control-next {
-        top: 50%; /* Positions the buttons vertically centered */
-        transform: translateY(-50%); /* Adjusts the vertical position */
-    }
+    .stars input {
+        position: absolute;
+        clip: rect(0, 0, 0, 0);
+      }
+      
+      .stars label {
+        box-sizing: border-box;
+        display: inline-block;
+        margin-right: 6px;
+        height: 60px;
+        width: 60px;
+        background: url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512'%3E%3Cpath fill='transparent' stroke='slategray' stroke-width='38' d='M259.216 29.942L330.27 173.92l158.89 23.087L374.185 309.08l27.145 158.23-142.114-74.698-142.112 74.698 27.146-158.23L29.274 197.007l158.89-23.088z' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+        font-size: 0;
+        cursor: pointer;
+      }
+      
+      .stars input:nth-child(1):checked ~ label:nth-of-type(-n + 1),
+      .stars input:nth-child(2):checked ~ label:nth-of-type(-n + 2),
+      .stars input:nth-child(3):checked ~ label:nth-of-type(-n + 3),
+      .stars input:nth-child(4):checked ~ label:nth-of-type(-n + 4),
+      .stars input:nth-child(5):checked ~ label:nth-of-type(-n + 5) {
+        background: url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512'%3E%3Cpath fill='slategray' stroke='slategray' stroke-width='38' d='M259.216 29.942L330.27 173.92l158.89 23.087L374.185 309.08l27.145 158.23-142.114-74.698-142.112 74.698 27.146-158.23L29.274 197.007l158.89-23.088z' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+      }
+      
+      /* 
+        PRESENTATION ONLY
+        Everything below this line is unnecessary
+      */
 </style>
-
 <div class="py-5">
     <div class="container">
         <div class="row">
@@ -38,16 +52,21 @@ WTS|Products
                             <div class="col-md-4">
                                 <img src="{% static 'images/AI Data Extractor.png' %}" class="w-100 h-100 img-fluid" alt="image">
                             </div>
+                            <div class="stars">
+                                <input type="radio" id="star1" name="rating" value="1" /><input type="radio" id="star2" name="rating" value="2" /><input type="radio" id="star3" name="rating" value="3" /><input type="radio" id="star4" name="rating" value="4" /><input type="radio" id="star5" name="rating" value="5" />
+                                
+                                <label for="star1" aria-label="Banana">1 star</label><label for="star2">2 stars</label><label for="star3">3 stars</label><label for="star4">4 stars</label><label for="star5">5 stars</label>
+                              </div>
                             
                             <div class="col-md-8">
                                 <br>
-                                <h2 class="mb-0" style="font-family:Alegreya;">
+                                <h2 class="mb-0" style="font-family:Alegreya;color: #d4a762;">
                                     Project Name
                                 </h2>
                                 <br>
                                 
                                 <br><br>    
-                                <h3 style="font-family:Alegreya;">Description</h3>
+                                <h3 style="font-family:Alegreya;color: #d4a762;">Description</h3>
                                 <hr>
                                 <p class="mt-3" style="font-family:Bitter;">
                                     Bootstrap is a free and open-source CSS framework directed at responsive, mobile-first front-end web development. 
@@ -57,7 +76,7 @@ WTS|Products
                             </div>
                         </div>
                         <br>
-                        <h2 style="font-family:Alegreya;">Screenshots</h2>
+                        <h2 style="font-family:Alegreya;color: #d4a762;">Screenshots</h2>
                         <hr>
                         <div id="carouselExampleAutoplaying" class="carousel slide" data-bs-ride="carousel">
                             <div class="carousel-inner">
@@ -98,12 +117,12 @@ WTS|Products
                             </video>
                         </div>
                     <hr>
-                    <h2 style="font-family:Alegreya;">Costs And Effects </h2><hr>
+                    <h2 style="font-family:Alegreya;color: #d4a762;">Costs And Effects </h2><hr>
                                 <p class="mt-3" style="font-family:Bitter;">
                                     some Content
                                 </p>
                         <div class="col-md-15">
-                            <h2 class="card-body" style="font-family:Alegreya;">Product Specs:</h2>
+                            <h2 class="card-body" style="font-family:Alegreya;color: #d4a762;">Product Specs:</h2>
                             <div class="indented-paragraph">
                                 <p class="card-body" style="font-family:Bitter;">
                                     Bootstrap Icons. Free, high quality, open source icon library with over 2,000 icons. Include them anyway you like—SVGs, SVG sprite, or web fonts. Use them with or without Bootstrap in any project.
