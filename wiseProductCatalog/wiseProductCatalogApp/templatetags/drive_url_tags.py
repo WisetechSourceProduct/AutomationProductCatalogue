@@ -13,3 +13,12 @@ def url_convertor(text):
         return f"https://drive.google.com/thumbnail?id={converted_url[0].strip('/')}"
     else:
         return text
+    
+@register.filter(name='split')
+def split(value, key):
+    points = []
+    point = value.split(key)
+    for i in point:
+        points.append(i + "\n")
+    return points
+    
