@@ -1,5 +1,6 @@
 {% extends 'base.html' %}
 {% load static %}
+{% load drive_url_tags %}
 
 {% block title %}
 WTS|Products
@@ -14,16 +15,18 @@ WTS|Products
 
 <style>
     .stars input {
+        margin-top:-20;
         position: absolute;
         clip: rect(0, 0, 0, 0);
+        margin-top:0;
       }
       
       .stars label {
         box-sizing: border-box;
         display: inline-block;
-        margin-right: 6px;
-        height: 60px;
-        width: 60px;
+        margin-right: 7px;
+        height: 40px;
+        width: 40px;
         background: url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512'%3E%3Cpath fill='transparent' stroke='slategray' stroke-width='38' d='M259.216 29.942L330.27 173.92l158.89 23.087L374.185 309.08l27.145 158.23-142.114-74.698-142.112 74.698 27.146-158.23L29.274 197.007l158.89-23.088z' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
         font-size: 0;
         cursor: pointer;
@@ -36,12 +39,25 @@ WTS|Products
       .stars input:nth-child(5):checked ~ label:nth-of-type(-n + 5) {
         background: url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512'%3E%3Cpath fill='slategray' stroke='slategray' stroke-width='38' d='M259.216 29.942L330.27 173.92l158.89 23.087L374.185 309.08l27.145 158.23-142.114-74.698-142.112 74.698 27.146-158.23L29.274 197.007l158.89-23.088z' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
       }
+      /* Responsive styles */
+      @media screen and (max-width: 768px) {
+          .stars label {
+              height: 30px;
+              width: 30px;
+          }
+      }
+  
+      @media screen and (max-width: 576px) {
+          .stars label {
+              height: 25px;
+              width: 25px;
+          }
+      }
       
-      /* 
-        PRESENTATION ONLY
-        Everything below this line is unnecessary
-      */
 </style>
+{% for key in subproducts %}
+    {% for keys,value in key.items %}
+
 <div class="py-5">
     <div class="container">
         <div class="row">
@@ -50,18 +66,19 @@ WTS|Products
                     <div class="card-body">
                         <div class="row">
                             <div class="col-md-4">
-                                <img src="{% static 'images/AI Data Extractor.png' %}" class="w-100 h-100 img-fluid" alt="image">
-                            </div>
-                            <div class="stars">
+                                {% comment %} <img src="{% static 'images/AI Data Extractor.png' %}" class="w-100 h-100 img-fluid" alt="image"> {% endcomment %}
+                                <img {% if value.0 != 'None' %} src="{{value.0|url_convertor}}"{% else %} src="{{excel_data.wiseSubProductsDefaultImage | url_convertor}}" {% endif %} style="height:299px;" class="img-fluid w-100 rounded" alt="">
+                            <div class="stars" style="margin-left:50px;margin-top;-30:">
                                 <input type="radio" id="star1" name="rating" value="1" /><input type="radio" id="star2" name="rating" value="2" /><input type="radio" id="star3" name="rating" value="3" /><input type="radio" id="star4" name="rating" value="4" /><input type="radio" id="star5" name="rating" value="5" />
                                 
                                 <label for="star1" aria-label="Banana">1 star</label><label for="star2">2 stars</label><label for="star3">3 stars</label><label for="star4">4 stars</label><label for="star5">5 stars</label>
                               </div>
+                            </div>
                             
                             <div class="col-md-8">
                                 <br>
                                 <h2 class="mb-0" style="font-family:Alegreya;color: #d4a762;">
-                                    Project Name
+                                    {{keys}}
                                 </h2>
                                 <br>
                                 
@@ -75,9 +92,8 @@ WTS|Products
                                 <br><br>
                             </div>
                         </div>
-                        <br>
-                        <h2 style="font-family:Alegreya;color: #d4a762;">Screenshots</h2>
-                        <hr>
+                        <br><br><br><br><br><br>
+
                         <div id="carouselExampleAutoplaying" class="carousel slide" data-bs-ride="carousel">
                             <div class="carousel-inner">
                                 <div class="carousel-item active">
@@ -96,12 +112,13 @@ WTS|Products
                                     <img class="carousel-img" src="{% static 'images/image_2024_04_03T09_09_12_449Z.png' %}" class="d-block" alt="Corousel Image">
                                 </div>
                             </div>
+                                                <!-- Control Buttons -->
                             <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleAutoplaying" data-bs-slide="prev">
-                                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                <i class="bi-arrow-left-circle-fill"></i>
                                 <span class="visually-hidden">Previous</span>
                             </button>
-                            <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleAutoplaying" data-bs-slide="next">
-                                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                            <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleAutoplaying" data-bs-slide="next" >
+                                <i class="bi-arrow-right-circle-fill"></i>
                                 <span class="visually-hidden">Next</span>
                             </button>
                         </div>
@@ -135,7 +152,8 @@ WTS|Products
         </div>
     </div>
 </div>
-
+{% endfor %}
+{% endfor %}
 {% include 'footer.html' %}
 
 <script>

@@ -207,12 +207,10 @@ to {transform:scale(1)}
 }
 }
 
-/* Adjusting the size of the carousel control buttons */
-.carousel-control-prev-icon,
-.carousel-control-next-icon {
-    width: 30px; /* Adjust width as needed */
-    height: 30px; /* Adjust height as needed */
-    color: #d4a762;
+.bi-arrow-left-circle-fill,
+.bi-arrow-right-circle-fill{
+    width: 30px;
+    height: 30px;
 }
 
 /* Optional: Adjusting the position of the control buttons */
@@ -220,4 +218,7 @@ to {transform:scale(1)}
 .carousel-control-next {
     top: 50%; /* Positions the buttons vertically centered */
     transform: translateY(-50%); /* Adjusts the vertical position */
+    
+    width: 50px;
+    height: 100px;
 }
