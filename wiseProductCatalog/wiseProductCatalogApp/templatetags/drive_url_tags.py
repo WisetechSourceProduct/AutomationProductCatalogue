@@ -16,9 +16,7 @@ def url_convertor(text):
     
 @register.filter(name='split')
 def split(value, key):
-    points = []
     point = value.split(key)
-    for i in point:
-        points.append(i + "\n")
-    return points
+
+    return point
     

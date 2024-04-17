@@ -92,5 +92,6 @@ def subproducts(request, product_name):
 def productdetails(request):
     content = dict_maker(excel_file_path) # Convert excel file into dict format
     products_dictionary = products_dict_maker()
-    # print(products_dictionary[0])
+    for i in products_dictionary:
+        print(i)
     return render (request,"wiseProductCatalogApp/productsdetail.html",{"excel_data":content, "subproducts":products_dictionary[0].values()})
