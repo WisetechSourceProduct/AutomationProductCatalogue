@@ -14,9 +14,8 @@ def url_convertor(text):
     else:
         return text
     
-@register.filter(name='split')
-def split(value, key):
+@register.filter(name='splitter')
+def splitter(value, key):
     point = value.split(key)
-
     return point
     

@@ -55,9 +55,7 @@ WTS|Products
       }
       
 </style>
-{% for key in subproducts %}
-{% for i in key %}
-{{i}}
+
 <div class="py-5">
     <div class="container">
         <div class="row">
@@ -67,7 +65,7 @@ WTS|Products
                         <div class="row">
                             <div class="col-md-4">
                                 {% comment %} <img src="{% static 'images/AI Data Extractor.png' %}" class="w-100 h-100 img-fluid" alt="image"> {% endcomment %}
-                                <img {% if value.0 != 'None' %} src="{{key |url_convertor}}"{% else %} src="{{excel_data.wiseSubProductsDefaultImage | url_convertor}}" {% endif %} style="height:299px;" class="img-fluid w-100 rounded" alt="">
+                                <img {% if value.0 != 'None' %} src="{{subproducts.0 |url_convertor}}"{% else %} src="{{excel_data.wiseSubProductsDefaultImage | url_convertor}}" {% endif %} style="height:299px;" class="img-fluid w-100 rounded" alt="">
                             <div class="stars" style="margin-left:50px;margin-top;-30:">
                                 <input type="radio" id="star1" name="rating" value="1" /><input type="radio" id="star2" name="rating" value="2" /><input type="radio" id="star3" name="rating" value="3" /><input type="radio" id="star4" name="rating" value="4" /><input type="radio" id="star5" name="rating" value="5" />
                                 
@@ -78,14 +76,20 @@ WTS|Products
                             <div class="col-md-7">
                                 <br>
                                 <h2 class="mb-0" style="font-family:Alegreya;color: #d4a762;">
-                                    {{keys}}
+                                    {{subproduct_name}}
                                 </h2>
                                 <br>
                                   
                                 <h3 style="font-family:Alegreya;color: #d4a762;">Description</h3>
                                 <hr>
                                 <p class="mt-3" style="font-family:Bitter;font-size:19px;text-align:justify;">
-                                    {{value.1}}
+                                    {% with description=subproducts.1|splitter:"." %}
+                                        {% for desc in description %}
+                                            <p>{{desc}}</p>
+                                        {% endfor %}
+                                    {% endwith %}
+                                    
+                                    
                                 </p>
                             </div>
                         </div>
@@ -132,13 +136,18 @@ WTS|Products
                         </div><br><br>
                     <h2 style="font-family:Alegreya;color: #d4a762;">Time And Cost Saving </h2><hr>
                                 <p class="mt-3" style="font-family:Bitter;">
-                                    {{value.2 | split:"." }}
+
+                                    {% with time_cost=subproducts.2|splitter:"." %}
+                                        {% for tc in description %}
+                                            <p>{{tc}}</p>
+                                        {% endfor %}
+                                    {% endwith %}
                                 </p>
                         <div class="col-md-15">
                             <h2 class="card-body" style="font-family:Alegreya;color: #d4a762;">Features</h2>
                             <div class="indented-paragraph">
                                 <p class="card-body" style="font-family:Bitter;">
-                                    {{value.3}}
+                                    {{subproducts.3}}
                                 </p>
                             </div>
                         </div>
@@ -148,7 +157,7 @@ WTS|Products
         </div>
     </div>
 </div>
-{% endfor %}
+
 {% include 'footer.html' %}
 
 <script>
