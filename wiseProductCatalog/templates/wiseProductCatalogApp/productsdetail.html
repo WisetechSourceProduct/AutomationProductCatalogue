@@ -56,7 +56,8 @@ WTS|Products
       
 </style>
 {% for key in subproducts %}
-{{key}}
+{% for i in key %}
+{{i}}
 <div class="py-5">
     <div class="container">
         <div class="row">
@@ -66,7 +67,7 @@ WTS|Products
                         <div class="row">
                             <div class="col-md-4">
                                 {% comment %} <img src="{% static 'images/AI Data Extractor.png' %}" class="w-100 h-100 img-fluid" alt="image"> {% endcomment %}
-                                <img {% if value.0 != 'None' %} src="{{value.0|url_convertor}}"{% else %} src="{{excel_data.wiseSubProductsDefaultImage | url_convertor}}" {% endif %} style="height:299px;" class="img-fluid w-100 rounded" alt="">
+                                <img {% if value.0 != 'None' %} src="{{key |url_convertor}}"{% else %} src="{{excel_data.wiseSubProductsDefaultImage | url_convertor}}" {% endif %} style="height:299px;" class="img-fluid w-100 rounded" alt="">
                             <div class="stars" style="margin-left:50px;margin-top;-30:">
                                 <input type="radio" id="star1" name="rating" value="1" /><input type="radio" id="star2" name="rating" value="2" /><input type="radio" id="star3" name="rating" value="3" /><input type="radio" id="star4" name="rating" value="4" /><input type="radio" id="star5" name="rating" value="5" />
                                 
