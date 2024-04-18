@@ -78,6 +78,7 @@ WTS|Products
                                 <h2 class="mb-0" style="font-family:Alegreya;color: #d4a762;">
                                     {{subproduct_name}}
                                 </h2>
+                                
                                 <br>
                                   
                                 <h3 style="font-family:Alegreya;color: #d4a762;">Description</h3>
@@ -138,8 +139,8 @@ WTS|Products
                                 <p class="mt-3" style="font-family:Bitter;">
 
                                     {% with time_cost=subproducts.2|splitter:"." %}
-                                        {% for tc in description %}
-                                            <p>{{tc}}</p>
+                                        {% for costs in time_cost %}
+                                            <p>{{costs}}</p>
                                         {% endfor %}
                                     {% endwith %}
                                 </p>
@@ -147,7 +148,11 @@ WTS|Products
                             <h2 class="card-body" style="font-family:Alegreya;color: #d4a762;">Features</h2>
                             <div class="indented-paragraph">
                                 <p class="card-body" style="font-family:Bitter;">
-                                    {{subproducts.3}}
+                                    {% with features=subproducts.3|splitter:"." %}
+                                        {% for feature in features %}
+                                            <p>{{feature}}</p>
+                                        {% endfor %}
+                                    {% endwith %}
                                 </p>
                             </div>
                         </div>
