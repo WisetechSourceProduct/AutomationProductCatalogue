@@ -56,8 +56,7 @@ WTS|Products
       
 </style>
 {% for key in subproducts %}
-    {% for keys,value in key.items %}
-
+{{key}}
 <div class="py-5">
     <div class="container">
         <div class="row">
@@ -148,7 +147,6 @@ WTS|Products
         </div>
     </div>
 </div>
-{% endfor %}
 {% endfor %}
 {% include 'footer.html' %}
 

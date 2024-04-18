@@ -87,10 +87,10 @@ def subproducts(request, product_name):
     content = dict_maker(excel_file_path) # Convert excel file into dict format
     products_dictionary = products_dict_maker()
     subproducts_name = products_dictionary[0].get(product_name) # Have to handle error on this area. If the key not found what will be the web page design
-    return render(request,"wiseProductCatalogApp/subproducts.html", {"excel_data":content, "subproducts":subproducts_name})
+    return render(request,"wiseProductCatalogApp/subproducts.html", {"excel_data":content, "subproducts":subproducts_name,"productname":product_name})
 
-def productdetails(request):
+def productdetails(request,product_name,product_details):
     content = dict_maker(excel_file_path) # Convert excel file into dict format
     products_dictionary = products_dict_maker()
-
-    return render (request,"wiseProductCatalogApp/productsdetail.html",{"excel_data":content, "subproducts":products_dictionary[0].values()})
+    
+    return render (request,"wiseProductCatalogApp/productsdetail.html",{"excel_data":content, "subproducts":products_dictionary[0][product_name][product_details]})
