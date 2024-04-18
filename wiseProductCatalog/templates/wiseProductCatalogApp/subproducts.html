@@ -33,7 +33,7 @@ WTS|Products
                                 <!--<img src="{% static 'images/AI Data Extractor.png' %}" style="height:299px;" class="img-fluid w-100 rounded" alt="">-->
                                 <img {% if values.0 != 'None' %} src="{{values.0|url_convertor}}"{% else %} src="{{excel_data.wiseSubProductsDefaultImage | url_convertor}}" {% endif %} style="height:299px;" class="img-fluid w-100 rounded" alt="">
                                 <div class="project-content">
-                                    <a href="{% url 'productdetails'{{key}} %}" class="text-center">
+                                    <a href="{% url 'productdetails' productname key %}" class="text-center">
                                     {% comment %} <a href="#" class="text-center"> {% endcomment %}
                                     <h4 class="text-secondary" style="font-family:Bitter;font-size:19px;">{{key}}</h4>
                                         <!--<p class="m-0 text-white">Web Analysis</p>-->
