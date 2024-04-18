@@ -83,15 +83,13 @@ WTS|Products
                                   
                                 <h3 style="font-family:Alegreya;color: #d4a762;">Description</h3>
                                 <hr>
-                                <p class="mt-3" style="font-family:Bitter;font-size:19px;text-align:justify;">
+
                                     {% with description=subproducts.1|splitter:"." %}
                                         {% for desc in description %}
-                                            <p>{{desc}}</p>
+                                            <p class="mt-3" style="font-family:Bitter;font-size:17px;text-align:justify;">{{desc}}</p>
                                         {% endfor %}
                                     {% endwith %}
                                     
-                                    
-                                </p>
                             </div>
                         </div>
                         <br><br><br>
@@ -136,24 +134,22 @@ WTS|Products
                             </video>
                         </div><br><br>
                     <h2 style="font-family:Alegreya;color: #d4a762;">Time And Cost Saving </h2><hr>
-                                <p class="mt-3" style="font-family:Bitter;">
 
                                     {% with time_cost=subproducts.2|splitter:"." %}
                                         {% for costs in time_cost %}
-                                            <p>{{costs}}</p>
+                                            <p class="mt-3" style="font-family:Bitter;">{{costs}}</p>
                                         {% endfor %}
                                     {% endwith %}
-                                </p>
+                                
                         <div class="col-md-15">
-                            <h2 class="card-body" style="font-family:Alegreya;color: #d4a762;">Features</h2>
+                            <h2 class="card-body" style="font-family:Alegreya;color: #d4a762;">Features</h2><hr>
                             <div class="indented-paragraph">
-                                <p class="card-body" style="font-family:Bitter;">
+                                
                                     {% with features=subproducts.3|splitter:"." %}
                                         {% for feature in features %}
-                                            <p>{{feature}}</p>
+                                            <p class="card-body" style="font-family:Bitter;">{{feature}}</p>
                                         {% endfor %}
                                     {% endwith %}
-                                </p>
                             </div>
                         </div>
                     </div>
