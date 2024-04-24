@@ -94,3 +94,7 @@ def productdetails(request,product_name,product_details):
     content = dict_maker(excel_file_path) # Convert excel file into dict format
     products_dictionary = products_dict_maker()
     return render (request,"wiseProductCatalogApp/productsdetail.html",{"excel_data":content, "subproducts":products_dictionary[0][product_name][product_details], "subproduct_name":product_details})
+
+def about(request):
+    content = dict_maker(excel_file_path)
+    return render(request,"wiseProductCatalogApp/about.html",{"excel_data":content})

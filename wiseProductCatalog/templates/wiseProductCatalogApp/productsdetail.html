@@ -143,6 +143,28 @@ WTS|Products
                                     
                             </div>
                         </div>
+                        <h2 style="font-family:Alegreya;color:#d4a762;">Time And Cost Saving </h2><hr>
+                    <div class="d-flex flex-column">
+                                    {% with time_cost=subproducts.2|splitter:"." %}
+                                        {% for costs in time_cost %}
+                                        <li class="d-flex align-items-center py-2" style="font-family:Bitter;">
+                                            <span class="bullet bullet-vertical bg-info me-5"></span>
+                                            {{costs}}</li>
+                                        {% endfor %}
+                                    {% endwith %}
+                    </div>
+                        <div class="col-md-15">
+                            <h2 class="card-body" style="font-family:Alegreya;color: #d4a762;">Features</h2><hr>
+                            <div class="d-flex flex-column">
+                                
+                                    {% with features=subproducts.3|splitter:"." %}
+                                        {% for feature in features %}
+                                        <li class="d-flex align-items-center py-2"  style="font-family:Bitter;">
+                                            <span class="bullet bullet-vertical bg-info me-5"></span>
+                                            {{feature}}</li>
+                                        {% endfor %}
+                                    {% endwith %}
+                            </div>
                         <br><br><br>
 
                         <div id="carouselExampleAutoplaying" class="carousel slide" data-bs-ride="carousel">
@@ -184,28 +206,8 @@ WTS|Products
                                 Your browser does not support the video tag.
                             </video>
                         </div><br><br>
-                    <h2 style="font-family:Alegreya;color:#d4a762;">Time And Cost Saving </h2><hr>
-                    <div class="d-flex flex-column">
-                                    {% with time_cost=subproducts.2|splitter:"." %}
-                                        {% for costs in time_cost %}
-                                        <li class="d-flex align-items-center py-2" style="font-family:Bitter;">
-                                            <span class="bullet bullet-vertical bg-info me-5"></span>
-                                            {{costs}}</li>
-                                        {% endfor %}
-                                    {% endwith %}
-                    </div>
-                        <div class="col-md-15">
-                            <h2 class="card-body" style="font-family:Alegreya;color: #d4a762;">Features</h2><hr>
-                            <div class="d-flex flex-column">
-                                
-                                    {% with features=subproducts.3|splitter:"." %}
-                                        {% for feature in features %}
-                                        <li class="d-flex align-items-center py-2"  style="font-family:Bitter;">
-                                            <span class="bullet bullet-vertical bg-info me-5"></span>
-                                            {{feature}}</li>
-                                        {% endfor %}
-                                    {% endwith %}
-                            </div>
+                    
+                        
                         </div>
                     </div>
                 </div>
