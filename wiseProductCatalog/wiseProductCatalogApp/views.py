@@ -2,7 +2,7 @@ from django.shortcuts import render
 import pandas as pd
 
 #excel_file_path = "https://github.com/WisetechSourceProduct/AutomationProductCatalogue/raw/main/wiseProductCatalog/static/required_documents/wiseProductCatalogContentSheet.xlsx"
-excel_file_path = "E:/TestSheet.xlsx"
+excel_file_path = "C:/Users/harih/OneDrive/Desktop/TestSheet1.xlsx"
 
 
 
@@ -49,6 +49,39 @@ def products_dict_maker():
             print(products_dict[i][k][1])
     """
     return products_dict, products_logo_dict
+
+
+
+def features_dict_maker(): # Function for listing features and its icons
+    
+    features_dict = {}
+    excel_header = []
+
+    products_dataframe = pd.read_excel(excel_file_path, sheet_name="Products")
+    for i in products_dataframe:
+        excel_header.append(i)
+
+    columns_to_fill = [excel_header[1], excel_header[4]]  # Specify the columns to fill
+    products_dataframe[columns_to_fill] = products_dataframe[columns_to_fill].ffill() # it fills NaN value with previous row data
+    products_dataframe_fillna = products_dataframe.fillna("None")
+
+    for index, row in products_dataframe_fillna.iterrows():
+        if row[excel_header[1]].rstrip(" \n") not in features_dict:
+            features_dict[row[excel_header[1]].rstrip(" \n")] = {}
+            if row[excel_header[4]].rstrip(" \n") not in features_dict[row[excel_header[1]].rstrip(" \n")]:
+                features_dict[row[excel_header[1]].rstrip(" \n")][row[excel_header[4]].rstrip(" \n")] = []
+                features_dict[row[excel_header[1]].rstrip(" \n")][row[excel_header[4]].rstrip(" \n")].append([row[excel_header[8]], row[excel_header[9]]])
+            else:
+                features_dict[row[excel_header[1]].rstrip(" \n")][row[excel_header[4]].rstrip(" \n")].append([*row[8:10]])
+        else:
+            try:
+                features_dict[row[excel_header[1]].rstrip(" \n")][row[excel_header[4]].rstrip(" \n")].append([row[excel_header[8]], row[excel_header[9]]])
+            except KeyError:
+                features_dict[row[excel_header[1]].rstrip(" \n")][row[excel_header[4]]] = []
+                features_dict[row[excel_header[1]].rstrip(" \n")][row[excel_header[4]].rstrip(" \n")].append([row[excel_header[8]], row[excel_header[9]]])
+    
+    return features_dict
+
     
     
 def navbar_list_maker(): # This function need to be deleted after the evaluation.
@@ -89,11 +122,15 @@ def subproducts(request, product_name):
     subproducts_name = products_dictionary[0].get(product_name) # Have to handle error on this area. If the key not found what will be the web page design
     return render(request,"wiseProductCatalogApp/subproducts.html", {"excel_data":content, "subproducts":subproducts_name,"productname":product_name})
 
+
 def productdetails(request,product_name,product_details):
+    
     
     content = dict_maker(excel_file_path) # Convert excel file into dict format
     products_dictionary = products_dict_maker()
-    return render (request,"wiseProductCatalogApp/productsdetail.html",{"excel_data":content, "subproducts":products_dictionary[0][product_name][product_details], "subproduct_name":product_details})
+    features_dictionary = features_dict_maker()[product_name][product_details]
+    return render (request,"wiseProductCatalogApp/productsdetail.html",{"excel_data":content, "subproducts":products_dictionary[0][product_name][product_details], "subproduct_name":product_details, "features":features_dictionary})
+
 
 def about(request):
     content = dict_maker(excel_file_path)

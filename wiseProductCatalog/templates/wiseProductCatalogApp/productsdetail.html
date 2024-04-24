@@ -153,9 +153,13 @@ WTS|Products
                                         {% endfor %}
                                     {% endwith %}
                     </div>
+
+                    <!--
                         <div class="col-md-15">
                             <h2 class="card-body" style="font-family:Alegreya;color: #d4a762;">Features</h2><hr>
                             <div class="d-flex flex-column">
+
+                                
                                 
                                     {% with features=subproducts.3|splitter:"." %}
                                         {% for feature in features %}
@@ -165,6 +169,24 @@ WTS|Products
                                         {% endfor %}
                                     {% endwith %}
                             </div>
+                    -->
+
+                    <div class="col-md-15">
+                        <h2 class="card-body" style="font-family:Alegreya;color: #d4a762;">Features</h2>
+                        <hr>
+                        
+                        {% for feature in features %}
+                        <div class="card" style="width: 18rem;">
+                            <img src="{{excel_data.wiseSubProductsDefaultImage | url_convertor}}" class="img-fluid w-100 rounded" alt="">
+                            <div class="card-body">
+                                <p class="card-text" style="font-family:Bitter;">
+                                    {{ feature.1 }}
+                                </p>
+                            </div>
+                        </div>
+                        {% endfor %}
+                    </div>
+
                         <br><br><br>
 
                         <div id="carouselExampleAutoplaying" class="carousel slide" data-bs-ride="carousel">
