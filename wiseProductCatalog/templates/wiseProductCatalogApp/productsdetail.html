@@ -73,40 +73,56 @@ WTS|Products
                             <div class="stars" style="margin-left:50px;margin-top;-30:">
                                 <input type="radio" id="star1" name="rating" value="1" /><input type="radio" id="star2" name="rating" value="2" /><input type="radio" id="star3" name="rating" value="3" /><input type="radio" id="star4" name="rating" value="4" /><input type="radio" id="star5" name="rating" value="5" />
                                 
-                                {% if subproducts.4 == 1 %}
+                                {% if subproducts.5 == 1 %}
                                 <h2><i class="fa fa-star" aria-hidden="true"></i>
+                                    <i class="fa fa-star-o" aria-hidden="true"></i>
+                                    <i class="fa fa-star-o" aria-hidden="true"></i>
+                                    <i class="fa fa-star-o" aria-hidden="true"></i>
+                                    <i class="fa fa-star-o" aria-hidden="true"></i>
                                 </h2>
-                                {% elif subproducts.4 == 1.5 %}
+                                {% elif subproducts.5 == 1.5 %}
                                 <h2><i class="fa fa-star" aria-hidden="true"></i>
                                     <i class="fa fa-star-half-o" aria-hidden="true"></i>
+                                    <i class="fa fa-star-o" aria-hidden="true"></i>
+                                    <i class="fa fa-star-o" aria-hidden="true"></i>
+                                    <i class="fa fa-star-o" aria-hidden="true"></i>
                                 </h2>
-                                {% elif subproducts.4 == 2 %}
+                                {% elif subproducts.5 == 2 %}
                                 <h2><i class="fa fa-star" aria-hidden="true"></i>
                                     <i class="fa fa-star" aria-hidden="true"></i>
+                                    <i class="fa fa-star-o" aria-hidden="true"></i>
+                                    <i class="fa fa-star-o" aria-hidden="true"></i>
+                                    <i class="fa fa-star-o" aria-hidden="true"></i>
                                 </h2>
-                                {% elif subproducts.4 == 2.5 %}
+                                {% elif subproducts.5 == 2.5 %}
                                 <h2><i class="fa fa-star" aria-hidden="true"></i>
                                     <i class="fa fa-star" aria-hidden="true"></i>
                                     <i class="fa fa-star-half-o" aria-hidden="true"></i>
+                                    <i class="fa fa-star-o" aria-hidden="true"></i>
+                                    <i class="fa fa-star-o" aria-hidden="true"></i>
                                 </h2>
-                                {% elif subproducts.4 == 3 %}
+                                {% elif subproducts.5 == 3 %}
                                 <h2><i class="fa fa-star" aria-hidden="true"></i>
                                     <i class="fa fa-star" aria-hidden="true"></i>
                                     <i class="fa fa-star" aria-hidden="true"></i>
+                                    <i class="fa fa-star-o" aria-hidden="true"></i>
+                                    <i class="fa fa-star-o" aria-hidden="true"></i>
                                 </h2>
-                                {% elif subproducts.4 == 3.5 %}
+                                {% elif subproducts.5 == 3.5 %}
                                 <h2><i class="fa fa-star" aria-hidden="true"></i>
                                     <i class="fa fa-star" aria-hidden="true"></i>
                                     <i class="fa fa-star" aria-hidden="true"></i>
                                     <i class="fa fa-star-half-o" aria-hidden="true"></i>
+                                    <i class="fa fa-star-o" aria-hidden="true"></i>
                                 </h2>
-                                {% elif subproducts.4 == 4 %}
+                                {% elif subproducts.5 == 4 %}
                                 <h2><i class="fa fa-star" aria-hidden="true"></i>
                                     <i class="fa fa-star" aria-hidden="true"></i>
                                     <i class="fa fa-star" aria-hidden="true"></i>
                                     <i class="fa fa-star" aria-hidden="true"></i>
+                                    <i class="fa fa-star-o" aria-hidden="true"></i>
                                 </h2>
-                                {% elif subproducts.4 == 4.5 %}
+                                {% elif subproducts.5 == 4.5 %}
                                 <h2><i class="fa fa-star" aria-hidden="true"></i>
                                     <i class="fa fa-star" aria-hidden="true"></i>
                                     <i class="fa fa-star" aria-hidden="true"></i>
@@ -170,22 +186,27 @@ WTS|Products
                                     {% endwith %}
                             </div>
                     -->
-
-                    <div class="col-md-15">
-                        <h2 class="card-body" style="font-family:Alegreya;color: #d4a762;">Features</h2>
+                    
+                    <h2 class="card-body" style="font-family:Alegreya;color: #d4a762;">Features</h2>
                         <hr>
-                        
-                        {% for feature in features %}
-                        <div class="card" style="width: 18rem;">
-                            <img src="{{excel_data.wiseSubProductsDefaultImage | url_convertor}}" class="img-fluid w-100 rounded" alt="">
-                            <div class="card-body">
-                                <p class="card-text" style="font-family:Bitter;">
-                                    {{ feature.1 }}
-                                </p>
-                            </div>
+                        <div class="row justify-content-center">
+                            {% for feature in features %}
+                                {% if feature.1 != 'None' %}
+                                <div class="col-md-3">
+                                    <div class="card mb-4">
+                                        <img {% if feature.0 != 'None' %} src="{{feature.0|url_convertor}}"{% else %} src="{{excel_data.wiseSubProductsDefaultImage | url_convertor}}" {% endif %} style="height:100px;width:100px;" class="card-img-top rounded mx-auto d-block" alt="">
+                                        <div class="card-body">
+                                            <p class="card-text" style="font-family:Bitter;">
+                                                {{ feature.1 }}
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                                {% endif %}
+                            {% endfor %}
                         </div>
-                        {% endfor %}
-                    </div>
+                        
+                    
 
                         <br><br><br>
 

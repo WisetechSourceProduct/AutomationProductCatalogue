@@ -27,6 +27,7 @@ WTS|Products
             <div class="row g-5">
 
                 {% for key, values in subproducts.items %}
+                {% if key != 'None' %}
                     <div class="col-md-6 col-lg-4 wow fadeIn" data-wow-delay=".3s">
                         <div class="project-item">
                             <div class="project-img">
@@ -43,6 +44,7 @@ WTS|Products
                             </div>
                         </div>
                     </div>
+                    {% endif %}
                 {% endfor %}
                 
             </div>

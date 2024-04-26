@@ -2,7 +2,7 @@ from django.shortcuts import render
 import pandas as pd
 
 #excel_file_path = "https://github.com/WisetechSourceProduct/AutomationProductCatalogue/raw/main/wiseProductCatalog/static/required_documents/wiseProductCatalogContentSheet.xlsx"
-excel_file_path = "C:/Users/harih/OneDrive/Desktop/TestSheet1.xlsx"
+excel_file_path = "E:\TestSheet.xlsx"
 
 
 
@@ -79,7 +79,6 @@ def features_dict_maker(): # Function for listing features and its icons
             except KeyError:
                 features_dict[row[excel_header[1]].rstrip(" \n")][row[excel_header[4]]] = []
                 features_dict[row[excel_header[1]].rstrip(" \n")][row[excel_header[4]].rstrip(" \n")].append([row[excel_header[8]], row[excel_header[9]]])
-    
     return features_dict
 
     
