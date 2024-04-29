@@ -81,6 +81,32 @@ def features_dict_maker(): # Function for listing features and its icons
                 features_dict[row[excel_header[1]].rstrip(" \n")][row[excel_header[4]].rstrip(" \n")].append([row[excel_header[8]], row[excel_header[9]]])
     return features_dict
 
+def about_dict_maker():
+    about_dict={}
+    excel_header=[]
+
+    products_dataframe = pd.read_excel(excel_file_path, sheet_name="About")
+    for i in products_dataframe:
+        excel_header.append(i)
+
+    print(excel_header[4])
+
+    products_dataframe_fillna = products_dataframe.fillna("None")
+    products_dataframe_fillna[excel_header[0]] =  products_dataframe[excel_header[0]].ffill() # it fills NaN value with previous row data
+    products_dataframe_fillna = products_dataframe.fillna("None")
+    
+    for index, row in products_dataframe_fillna.iterrows():
+        if row[excel_header[0]].rstrip(" \n") not in about_dict:
+            about_dict[row[excel_header[0]].rstrip(" \n")] = {}
+            about_dict[row[excel_header[0]].rstrip(" \n")][row[excel_header[4]]] = [*row[0:]]
+            
+        else:
+            about_dict[row[excel_header[1]].rstrip(" \n")][row[excel_header[4]]] = [*row[0:]]
+
+    return about_dict
+        
+    
+    
     
     
 def navbar_list_maker(): # This function need to be deleted after the evaluation.
@@ -133,4 +159,5 @@ def productdetails(request,product_name,product_details):
 
 def about(request):
     content = dict_maker(excel_file_path)
-    return render(request,"wiseProductCatalogApp/about.html",{"excel_data":content})
+    about_dictionary = about_dict_maker()
+    return render(request,"wiseProductCatalogApp/about.html",{"excel_data":content,"about_dictionary":about_dictionary})
