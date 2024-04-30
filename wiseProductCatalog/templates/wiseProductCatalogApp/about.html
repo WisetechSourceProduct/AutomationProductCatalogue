@@ -7,122 +7,98 @@ WTS|Products
 {% endblock %}
 
 {% block body %}
-
-{% block cdn%}
+{% block cdn %}
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css" integrity="sha512-5A8nwdMOWrSz20fDsjczgUidUBR8liPYU+WymTZP1lmY9G6Oc7HlZv156XqnsgNUzTyMefFTcsFH/tnJE/+xBg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 {% endblock %}
 
 {% include "navbar.html" %}
 {% include 'wiseProductCatalogApp/background.html' %}
 
-    <body>
-      {% for value in about_dictionary.values %}
-      {% for va in value.values %}
-      {{va.0}}
-      
-      {% endfor %}
-      {% endfor %}
+<div class="py-4">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card shadow product_data">
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-lg-12 text-center mb-8">
+                                <h1 class="page-title" style="font-family:Alegreya;color:#d4a762;">About us</h1>
+                            </div>
+                            <br>
+                        </div>
+                        {% for keys, valueses in about_dictionary.items %}
+                        {% if keys != 'None' %}
+                        {% if keys != 'WiseTeam' %}
+                        {% for key, value in valueses.items %}
+                        
+                                            <div class="d-md-flex post-entry-2 half">
+                                                <a href="#" class="me-4 thumbnail">
+                                                    <img {% if value.0 != 'None' %} src="{{value.0|url_convertor}}"{% else %} src="{{excel_data.wiseSubProductsDefaultImage | url_convertor}}" {% endif %} alt="Image" width="400px" class="float-start">
+                                                </a>
+                                                <div class="ps-md-2 mt-6 mt-md-8">
+                                                    <h2 class="mb-4 display-5" style="font-family:Alegreya;color:#d4a762;text-align:justify;">{{ key }}</h2>
+                                                    {% with content=value.1|splitter:"." %}
+                                                    <ul>
+                                                        {% for contents in content %}
+                                                        <li class="d-flex align-items-center py-3" style="font-family:Bitter;font-size:20px">
+                                                            <span class="bullet bullet-vertical bg-info me-5" ></span>
+                                                            {{ contents }}</li>
+                                                        {% endfor %}
+                                                    </ul>
+                                                    {% endwith %}
+                                                </div>
+                                            </div>
+                                      
+                        {% endfor %}
+                        {% endif %}
+                        {% endif %}
+                        {% endfor %}
+                        <hr>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="container" data-aos="fade-up">
+                                    <div class="row justify-content-center">
+                                        <div class="col-lg-12 text-center mb-5">
+                                            <h2 class="display-4" style="font-family:Alegreya;color:#d4a762;">Our Team</h2>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <!-- Team members -->
+                                        {% for keys, valueses in about_dictionary.items %}
+                                        {% if keys != 'None' %}
+                                        {% if keys == 'WiseTeam' %}
+                                        {% for key, value in valueses.items %}
+                                        <div class="col-lg-4 text-center mb-5">
+                                            <img {% if value.0 != 'None' %} src="{{value.0|url_convertor}}"{% else %} src="{{excel_data.wiseSubProductsDefaultImage | url_convertor}}" {% endif %} alt="" class="img-fluid rounded-circle w-50 mb-4">
+                                            <h4>{{ key }}</h4>
+                                            <span class="d-block mb-3 text-uppercase">{{ value.2 }}</span>
+                                            {% with content=value.1|splitter:"." %}
+                                            <ul>
+                                                {% for costs in content %}
+                                                <li class="d-flex align-items-center py-3" style="font-family:Bitter;font-size:20px;">
+                                                    <span class="bullet bullet-vertical bg-info me-4"></span>
+                                                    {{ costs }}</li>
+                                                {% endfor %}
+                                            </ul>
+                                            {% endwith %}
+                                        </div>
+                                        {% endfor %}
+                                        {% endif %}
+                                        {% endif %}
+                                        {% endfor %}
+                                    </div> 
+                                </div>
+                            </div>
+                        </div>
 
-        <main id="main">
-            <section>
-              <div class="container" data-aos="fade-up">
-                <div class="row">
-                  <div class="col-lg-12 text-center mb-5">
-                    <h1 class="page-title">About us</h1>
-                  </div>
-                </div>
-        
-                <div class="row mb-5">
-        
-                  <div class="d-md-flex post-entry-2 half">
-                    <a href="#" class="me-4 thumbnail">
-                      <img src="{% static "images\task reminder.png" %}" alt="Image" class="img-fluid">
-                    </a>
-                    <div class="ps-md-5 mt-4 mt-md-0">
-
-                      <h2 class="mb-5 display-5">WiseTech Source</h2>
-        
-                      <p>WiseTech Source Pvt. Ltd., a venture of Wise Group of Companies, is a technology firm located in Chennai, India, providing automated software solutions and services using Artificial Intelligence (AI) technologies to the healthcare industry to enhance their productivity & revenue. We have a team of highly experienced RCM domain experts who are specialized in Artificial Intelligence (AI) technology. We are expanding our business team to provide process automation & intelligent software solutions to our end customers.</p>
                     </div>
-                  </div>
-                  <br><hr>
-
-                  <div class="d-md-flex post-entry-2 half">
-                    <a href="#" class="me-4 thumbnail">
-                      <img src="{% static "images\task reminder.png" %}" alt="Image" class="img-fluid">
-                    </a>
-                    <div class="ps-md-5 mt-4 mt-md-0">
-
-                      <h2 class="mb-5 display-5">Key Strengths</h2>
-        
-                      <p>100+ Projects for US Healthcare Companies
-                        Product Support for 2 billion dollar company
-                        A big player in automation solutions with strong compliance adherence
-                        Artificial Intelligence(AI) based Automation Solutions to US Healthcare Market
-                        Research & Development on new-age technologies and embedding to our solutions
-                        With 50+ man-years of experience on Healthcare Domain in both Provider(RCM) and Payor(Insurance)</p>
-                    </div>
-                  </div>
-
-        
                 </div>
-        
-              </div>
-            </section>
-            
-            <section>
-              <div class="container" data-aos="fade-up">
-                <div class="row">
-                  <div class="col-12 text-center mb-5">
-                    <div class="row justify-content-center">
-                      <div class="col-lg-6">
-                        <h2 class="display-4">Our Team</h2>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="col-lg-4 text-center mb-5">
-                    <img src="assets/img/person-1.jpg" alt="" class="img-fluid rounded-circle w-50 mb-4">
-                    <h4>Cameron Williamson</h4>
-                    <span class="d-block mb-3 text-uppercase">Founder &amp; CEO</span>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Facilis, perspiciatis repellat maxime, adipisci non ipsam at itaque rerum vitae, necessitatibus nulla animi expedita cumque provident inventore? Voluptatum in tempora earum deleniti, culpa odit veniam, ea reiciendis sunt ullam temporibus aut!</p>
-                  </div>
-                  <div class="col-lg-4 text-center mb-5">
-                    <img src="{% static "images\task reminder.png" %}" alt="" class="img-fluid rounded-circle w-50 mb-4">
-                    <h4>Wade Warren</h4>
-                    <span class="d-block mb-3 text-uppercase">Founder, VP</span>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Facilis, perspiciatis repellat maxime, adipisci non ipsam at itaque rerum vitae, necessitatibus nulla animi expedita cumque provident inventore? Voluptatum in tempora earum deleniti, culpa odit veniam, ea reiciendis sunt ullam temporibus aut!</p>
-                  </div>
-                  <div class="col-lg-4 text-center mb-5">
-                    <img src="assets/img/person-3.jpg" alt="" class="img-fluid rounded-circle w-50 mb-4">
-                    <h4>Jane Cooper</h4>
-                    <span class="d-block mb-3 text-uppercase">Editor Staff</span>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Facilis, perspiciatis repellat maxime, adipisci non ipsam at itaque rerum vitae, necessitatibus nulla animi expedita cumque provident inventore? Voluptatum in tempora earum deleniti, culpa odit veniam, ea reiciendis sunt ullam temporibus aut!</p>
-                  </div>
-                  <div class="col-lg-4 text-center mb-5">
-                    <img src="assets/img/person-4.jpg" alt="" class="img-fluid rounded-circle w-50 mb-4">
-                    <h4>Cameron Williamson</h4>
-                    <span class="d-block mb-3 text-uppercase">Editor Staff</span>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Facilis, perspiciatis repellat maxime, adipisci non ipsam at itaque rerum vitae, necessitatibus nulla animi expedita cumque provident inventore? Voluptatum in tempora earum deleniti, culpa odit veniam, ea reiciendis sunt ullam temporibus aut!</p>
-                  </div>
-                  <div class="col-lg-4 text-center mb-5">
-                    <img src="assets/img/person-5.jpg" alt="" class="img-fluid rounded-circle w-50 mb-4">
-                    <h4>Cameron Williamson</h4>
-                    <span class="d-block mb-3 text-uppercase">Editor Staff</span>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Facilis, perspiciatis repellat maxime, adipisci non ipsam at itaque rerum vitae, necessitatibus nulla animi expedita cumque provident inventore? Voluptatum in tempora earum deleniti, culpa odit veniam, ea reiciendis sunt ullam temporibus aut!</p>
-                  </div>
-                  <div class="col-lg-4 text-center mb-5">
-                    <img src="assets/img/person-6.jpg" alt="" class="img-fluid rounded-circle w-50 mb-4">
-                    <h4>Cameron Williamson</h4>
-                    <span class="d-block mb-3 text-uppercase">Editor Staff</span>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Facilis, perspiciatis repellat maxime, adipisci non ipsam at itaque rerum vitae, necessitatibus nulla animi expedita cumque provident inventore? Voluptatum in tempora earum deleniti, culpa odit veniam, ea reiciendis sunt ullam temporibus aut!</p>
-                  </div>
-                </div>
-              </div>
-            </section>
-        
-          </main><!-- End #main -->
-        {% include 'footer.html' %}
-        {% endblock body %}
-    </body>
+            </div>
+        </div>
+    </div>
+</div>
 
-</html>
+<br>
+
+{% include 'footer.html' %}
+{% endblock body %}

@@ -2,7 +2,7 @@ from django.shortcuts import render
 import pandas as pd
 
 #excel_file_path = "https://github.com/WisetechSourceProduct/AutomationProductCatalogue/raw/main/wiseProductCatalog/static/required_documents/wiseProductCatalogContentSheet.xlsx"
-excel_file_path = "E:\TestSheet.xlsx"
+excel_file_path = "E:\TestSheet1.xlsx"
 
 
 
@@ -89,19 +89,17 @@ def about_dict_maker():
     for i in products_dataframe:
         excel_header.append(i)
 
-    print(excel_header[4])
 
     products_dataframe_fillna = products_dataframe.fillna("None")
     products_dataframe_fillna[excel_header[0]] =  products_dataframe[excel_header[0]].ffill() # it fills NaN value with previous row data
-    products_dataframe_fillna = products_dataframe.fillna("None")
     
     for index, row in products_dataframe_fillna.iterrows():
         if row[excel_header[0]].rstrip(" \n") not in about_dict:
             about_dict[row[excel_header[0]].rstrip(" \n")] = {}
-            about_dict[row[excel_header[0]].rstrip(" \n")][row[excel_header[4]]] = [*row[0:]]
+            about_dict[row[excel_header[0]].rstrip(" \n")][row[excel_header[1]]] = [*row[2:]]
             
         else:
-            about_dict[row[excel_header[1]].rstrip(" \n")][row[excel_header[4]]] = [*row[0:]]
+            about_dict[row[excel_header[0]].rstrip(" \n")][row[excel_header[1]]] = [*row[2:]]
 
     return about_dict
         
