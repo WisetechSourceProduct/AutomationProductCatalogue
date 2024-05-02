@@ -30,6 +30,33 @@ WTS|Products
                         {% if keys != 'None' %}
                         {% if keys != 'WiseTeam' %}
                         {% for key, value in valueses.items %}
+                        <div class="row about-extra">
+                            <div class="col-lg-6" data-aos="fade-right">
+                              <img {% if value.0 != 'None' %} src="{{value.0|url_convertor}}"{% else %} src="{{excel_data.wiseSubProductsDefaultImage | url_convertor}}" {% endif %} class="img-fluid" alt="" width='600px' style="margin-top:100px;" >
+                            </div>
+                            <div class="col-lg-6 pt-5 pt-lg-0" data-aos="fade-left">
+                                <h2 class="mb-4 display-5" style="font-family:Alegreya;color:#d4a762;text-align:justify;">{{ key }}</h2>
+                              <p>
+                                {% with content=value.1|splitter:"." %}
+                                                    <ul>
+                                                        {% for contents in content %}
+                                                        <li class="d-flex align-items-center py-3" style="font-family:Bitter;font-size:20px">
+                                                            <span class="bullet bullet-vertical bg-info me-5" ></span>
+                                                            {{ contents }}</li>
+                                                        {% endfor %}
+                                                    </ul>
+                                                    {% endwith %}
+                              </p>
+                            </div>
+                          </div>
+                          {% endfor %}
+                        {% endif %}
+                        {% endif %}
+                        {% endfor %}
+                        {% comment %} {% for keys, valueses in about_dictionary.items %}
+                        {% if keys != 'None' %}
+                        {% if keys != 'WiseTeam' %}
+                        {% for key, value in valueses.items %}
                         
                                             <div class="d-md-flex post-entry-2 half">
                                                 <a href="#" class="me-4 thumbnail">
@@ -52,7 +79,7 @@ WTS|Products
                         {% endfor %}
                         {% endif %}
                         {% endif %}
-                        {% endfor %}
+                        {% endfor %} {% endcomment %}
                         <hr>
                         <div class="row">
                             <div class="col-md-12">
