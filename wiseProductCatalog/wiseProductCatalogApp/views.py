@@ -1,8 +1,8 @@
 from django.shortcuts import render
 import pandas as pd
 
-excel_file_path = "https://github.com/WisetechSourceProduct/AutomationProductCatalogue/raw/main/wiseProductCatalog/static/required_documents/wiseProductCatalogContentSheet.xlsx"
-#excel_file_path = "E:\TestSheet1.xlsx"
+#excel_file_path = "https://github.com/WisetechSourceProduct/AutomationProductCatalogue/raw/main/wiseProductCatalog/static/required_documents/wiseProductCatalogContentSheet.xlsx"
+excel_file_path = "E:\TestSheet1.xlsx"
 
 
 
@@ -159,3 +159,13 @@ def about(request):
     content = dict_maker(excel_file_path)
     about_dictionary = about_dict_maker()
     return render(request,"wiseProductCatalogApp/about.html",{"excel_data":content,"about_dictionary":about_dictionary})
+
+
+def contact(request):
+    content = dict_maker(excel_file_path)
+    return render(request,"wiseProductCatalogApp/contact.html",{"excel_data":content})
+
+
+def contactus(request):
+    content = dict_maker(excel_file_path)
+    return render(request,"wiseProductCatalogApp/contact.html",{"excel_data":content})

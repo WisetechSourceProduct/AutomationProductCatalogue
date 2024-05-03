@@ -19,3 +19,10 @@ def splitter(value, key):
     point = value.split(key)
     return point
     
+@register.filter(name='readmore')
+def readmore(value,max_length):
+    if len(value) > max_length:
+        truncated_value = value[:max_length] + '...'
+        return truncated_value
+    else:
+        return value
