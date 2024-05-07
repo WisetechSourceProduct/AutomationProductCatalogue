@@ -59,10 +59,10 @@ WTS|Contact
                 </div>
               </div>
               <div class="col-12">
-                <div class="wrap-input100 input100-select bg1">
-                    <span class="label-input100">Needed Services <span class="text-danger">*</span></span>
-                    <div>
-                        <select class="js-select2" name="service" onchange="updateProducts(this)">
+                <div class="input-group">
+                    <span class="form-label">Needed Services <span class="text-danger">*</span></span>
+                    <div class="input-group">
+                        <select class="form-select" name="service" onchange="updateProducts(this)">
                             <option>Please choose</option>
                             {% with added_values=main_sector_data|init_list %}
                                 {% for sector in main_sector_data %}
@@ -124,12 +124,12 @@ WTS|Contact
                           var radioDiv = document.createElement("div");
                           radioDiv.className = "contact100-form-radio m-t-15";
                           var input = document.createElement("input");
-                          input.className = "input-radio100";
+                          input.className = "form-check-input";
                           input.type = "radio";
                           input.name = "type-product";
                           input.value = "{{ product }}";
                           var label = document.createElement("label");
-                          label.className = "label-radio100";
+                          label.className = "form-check-label";
                           label.htmlFor = "radio";
                           label.innerText = "{{ product }}";
                           radioDiv.appendChild(input);
