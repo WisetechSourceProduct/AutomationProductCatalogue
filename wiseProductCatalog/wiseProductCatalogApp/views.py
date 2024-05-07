@@ -2,7 +2,8 @@ from django.shortcuts import render
 import pandas as pd
 
 #excel_file_path = "https://github.com/WisetechSourceProduct/AutomationProductCatalogue/raw/main/wiseProductCatalog/static/required_documents/wiseProductCatalogContentSheet.xlsx"
-excel_file_path = "E:\TestSheet1.xlsx"
+excel_file_path = "E:\Testsheet.xlsx"
+
 
 
 
@@ -24,7 +25,7 @@ def products_dict_maker():
     products_dict = {}
     products_logo_dict = {}
     excel_header = []
-
+    
     products_dataframe = pd.read_excel(excel_file_path, sheet_name="Products")
     for i in products_dataframe:
         excel_header.append(i)
@@ -163,9 +164,13 @@ def about(request):
 
 def contact(request):
     content = dict_maker(excel_file_path)
-    return render(request,"wiseProductCatalogApp/contact.html",{"excel_data":content})
+    main_sector_data = products_dict_maker()
+    return render(request,"wiseProductCatalogApp/contact.html",{"excel_data":content,"main_sector_data":main_sector_data})
 
-
-def contactus(request):
-    content = dict_maker(excel_file_path)
-    return render(request,"wiseProductCatalogApp/contact.html",{"excel_data":content})
+# def contact(request):
+#     # Assuming you have main_sector data available
+#     main_sector_data = [
+#         {'Service1': {'Product1': 'Product 1', 'Product2': 'Product 2'}},
+#         {'Service2': {'Product3': 'Product 3', 'Product4': 'Product 4'}}
+#     ]
+#     return render(request, 'wiseProductCatalogApp/contact.html', {'main_sector_data': main_sector_data})

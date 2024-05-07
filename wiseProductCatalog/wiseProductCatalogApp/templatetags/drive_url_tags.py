@@ -26,3 +26,12 @@ def readmore(value,max_length):
         return truncated_value
     else:
         return value
+    
+@register.filter(name='append_to_list')
+def append_to_list(list, value):
+    list.append(value)
+    return list
+
+@register.filter(name='init_list')
+def init_list(value):
+    return []
