@@ -7,9 +7,16 @@ WTS|Contact
 {% endblock %}
 
 {% block body %}
+{% block cdn %}
+<!-- JavaScript -->
+<script src="//cdn.jsdelivr.net/npm/alertifyjs@1.14.0/build/alertify.min.js"></script>
+
+<!-- CSS -->
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.14.0/build/css/alertify.min.css"/>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css" integrity="sha512-5A8nwdMOWrSz20fDsjczgUidUBR8liPYU+WymTZP1lmY9G6Oc7HlZv156XqnsgNUzTyMefFTcsFH/tnJE/+xBg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+{% endblock %}
 
 {% include "navbar.html" %}
-{% comment %} {% include 'wiseProductCatalogApp/background.html' %} {% endcomment %}
 
 
 <style>
@@ -21,7 +28,7 @@ WTS|Contact
   <div class="container">
     <div class="row">
       <div class="col-12 col-md-10 col-lg-8">
-        <h3 class="fs-5 mb-2 text-secondary text-uppercase">Contact US</h3>
+        <h3 class="fs-5 mb-2 text-secondary text-uppercase" style="font-family:Alegreya;color:#d4a762;">Contact US</h3>
       </div>
     </div>
   </div>
@@ -30,14 +37,15 @@ WTS|Contact
     <div class="row gy-4 gy-md-5 gy-lg-0 align-items-md-center">
       <div class="col-12 col-lg-6">
         <div class="card shadow product_data" style="width:1200px;">
-          <form action="#!">
+          <form method="POST" onsubmit="sendmail(); reset(); return false;">
+            {% csrf_token %}
             <div class="row gy-4 gy-xl-5 p-4 p-xl-5">
               <div class="col-12">
-                <label for="fullname" class="form-label">Full Name <span class="text-danger">*</span></label>
+                <label for="fullname" class="form-label"  style="font-family:Alegreya;color:#d4a762;">Full Name <span class="text-danger">*</span></label>
                 <input type="text" class="form-control" id="fullname" name="fullname" required>
               </div>
               <div class="col-12 col-md-6">
-                <label for="email" class="form-label">Email <span class="text-danger">*</span></label>
+                <label for="email" class="form-label" style="font-family:Alegreya;color:#d4a762;">Email <span class="text-danger">*</span></label>
                 <div class="input-group">
                   <span class="input-group-text">
                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-envelope" viewBox="0 0 16 16">
@@ -48,19 +56,19 @@ WTS|Contact
                 </div>
               </div>
               <div class="col-12 col-md-6">
-                <label for="phone" class="form-label">Phone Number <span class="text-danger">*</span> </label>
+                <label for="phone" class="form-label" style="font-family:Alegreya;color:#d4a762;">Phone Number <span class="text-danger">*</span> </label>
                 <div class="input-group">
                   <span class="input-group-text">
                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-telephone" viewBox="0 0 16 16">
                       <path d="M3.654 1.328a.678.678 0 0 0-1.015-.063L1.605 2.3c-.483.484-.661 1.169-.45 1.77a17.568 17.568 0 0 0 4.168 6.608 17.569 17.569 0 0 0 6.608 4.168c.601.211 1.286.033 1.77-.45l1.034-1.034a.678.678 0 0 0-.063-1.015l-2.307-1.794a.678.678 0 0 0-.58-.122l-2.19.547a1.745 1.745 0 0 1-1.657-.459L5.482 8.062a1.745 1.745 0 0 1-.46-1.657l.548-2.19a.678.678 0 0 0-.122-.58L3.654 1.328zM1.884.511a1.745 1.745 0 0 1 2.612.163L6.29 2.98c.329.423.445.974.315 1.494l-.547 2.19a.678.678 0 0 0 .178.643l2.457 2.457a.678.678 0 0 0 .644.178l2.189-.547a1.745 1.745 0 0 1 1.494.315l2.306 1.794c.829.645.905 1.87.163 2.611l-1.034 1.034c-.74.74-1.846 1.065-2.877.702a18.634 18.634 0 0 1-7.01-4.42 18.634 18.634 0 0 1-4.42-7.009c-.362-1.03-.037-2.137.703-2.877L1.885.511z" />
                     </svg>
                   </span>
-                  <input type="tel" class="form-control" id="phone" name="phone" value="">
+                  <input type="tel" class="form-control" id="phone" name="phone" value="" >
                 </div>
               </div>
               <div class="col-12">
                 <div class="input-group">
-                    <span class="form-label">Needed Services <span class="text-danger">*</span></span>
+                    <span class="form-label" style="font-family:Alegreya;color:#d4a762;">Needed Services <span class="text-danger">*</span></span>
                     <div class="input-group">
                         <select class="form-select" name="service" onchange="updateProducts(this)">
                             <option>Please choose</option>
@@ -80,9 +88,10 @@ WTS|Contact
                         <div class="dropDownSelect2"></div>
                     </div>
                 </div>
+                <br>
                 <div class="w-full dis-none js-show-service">
                     <div class="wrap-contact100-form-radio" id="product-radio">
-                        <span class="label-input100">What type of products do you Want?</span>
+                        <span class="label-input100" style="font-family:Alegreya;color:#d4a762;">What type of services are Needed ?</span>
                         <div id="product-options">
                       
                         </div>
@@ -91,7 +100,7 @@ WTS|Contact
               </div>
               <br>
               <div class="col-12">
-                <label for="message" class="form-label">Message <span class="text-danger">*</span></label>
+                <label for="message" class="form-label" style="font-family:Alegreya;color:#d4a762;">Message <span class="text-danger">*</span></label>
                 <textarea class="form-control" id="message" name="message" rows="3" required></textarea>
               </div>
               <br>
@@ -110,6 +119,22 @@ WTS|Contact
   </div>
 </section>
 
+{% comment %} <script src="https://smtpjs.com/v3/smtp.js"></script>
+<script>
+  function sendmail(){
+    Email.send({
+      Host : "smtp.gmail.com",
+      Username : "karvannan200016@gmail.com",
+      Password : "52784425",
+      To : 'karvannanwts@gmail.com',
+      From : document.getElementById("email").value,
+      Subject : "New Client",
+      Body : "And this is the body"
+  }).then(
+    message => alert(message)
+  );
+  }
+</script> {% endcomment %}
 <script>
   function updateProducts(select) {
       var selectedService = select.value;
@@ -128,10 +153,16 @@ WTS|Contact
                           input.type = "radio";
                           input.name = "type-product";
                           input.value = "{{ product }}";
+
+
                           var label = document.createElement("label");
                           label.className = "form-check-label";
                           label.htmlFor = "radio";
                           label.innerText = "{{ product }}";
+
+                          label.style.marginLeft = "10px";
+                          label.style.fontFamily = "Bitter"; 
+
                           radioDiv.appendChild(input);
                           radioDiv.appendChild(label);
                           productOptionsDiv.appendChild(radioDiv);
@@ -141,7 +172,43 @@ WTS|Contact
           {% endfor %}
       {% endfor %}
   }
+
+
+  {% comment %} alertify.set('notifier','position', 'top-left');
+ alertify.success('Current position : ' + alertify.get('notifier','position')); {% endcomment %}
+  
 </script>
+
+<script>
+  {% if errors %}
+  {% for error in errors %}
+  Swal.fire({
+    icon: "error",
+    title: "Oops...",
+    text: "{{ error }}",
+  });
+  {% endfor %}
+  {% endif %}
+</script>
+
+<script>
+  {% if mail %}
+    {% if mail == "Email sent successfully!" %}
+      Swal.fire({
+        icon: "success",
+        title: "Success",
+        text: "{{ mail }}",
+      });
+    {% else %}
+      Swal.fire({
+        icon: "error",
+        title: "Error",
+        text: "{{ mail }}",
+      });
+    {% endif %}
+  {% endif %}
+</script>
+
 
 {% include 'footer.html' %}
 {% endblock %}
