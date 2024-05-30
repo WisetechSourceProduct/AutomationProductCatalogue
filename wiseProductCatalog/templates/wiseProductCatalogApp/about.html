@@ -3,7 +3,7 @@
 {% load drive_url_tags %}
 
 {% block title %}
-WTS|About
+WTS | About
 {% endblock %}
 
 {% block body %}
@@ -12,13 +12,44 @@ WTS|About
 {% endblock %}
 
 {% include "navbar.html" %}
-{% include 'wiseProductCatalogApp/background.html' %}
+{% comment %} {% include 'wiseProductCatalogApp/background.html' %} {% endcomment %}
 
 <style>
-    #boxer{
-        background-color: #f1f1f1;
-        margin-left:10px;
+    body {
+        background-color: #012A4A;
     }
+    #boxer {
+        background-color: #f1f1f1;
+        margin-left: 10px;
+    }
+    .strength-item {
+        font-family: Bitter;
+        color: #50C878;
+        font-size: 25px;
+        opacity: 0;
+        position: absolute;
+        transform: translateX(-50%); 
+        transition: transform 1s, opacity 1s;
+    }
+    
+    .show {
+        opacity: 1;
+        transform: translateX(30); /* Slide in from the left */
+    }
+    
+    .short-description {
+        max-height: 100px;
+        overflow: hidden;
+        transition: max-height 0.5s ease;
+    }
+    .key-strengths-wrapper {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+        margin-right:100px;
+    }
+    
 </style>
 
 <div class="py-4">
@@ -29,145 +60,106 @@ WTS|About
                     <div class="card-body">
                         <div class="row">
                             <div class="col-lg-12 text-center mb-8">
-                                <h1 class="page-title" style="font-family:Alegreya;color:#d4a762;font-size:60px;">About us</h1>
+                                <h1 class="page-title" style="font-family: Alegreya; color: #d4a762; font-size: 60px;">About us</h1>
                             </div>
-                            <br>
                         </div>
+                        <hr>
+                        <br>
+
                         {% for keys, valueses in about_dictionary.items %}
-                        {% if keys != 'None' %}
-                        {% if keys != 'WiseTeam' %}
-                        {% for key, value in valueses.items %}
-                        <div class="row about-extra">
-                            <div class="col-lg-6" data-aos="fade-right">
-                                {% comment %} <img src="{% static "images/hero-img.svg" %} "> {% endcomment %}
-                              <img {% if value.0 != 'None' %} src="{{value.0|url_convertor}}"{% else %} src="{{excel_data.wiseSubProductsDefaultImage | url_convertor}}" {% endif %} class="img-fluid" alt="" width='600px' style="margin-top:100px;" >
-                            </div>
-                            <div class="col-lg-6 pt-5 pt-lg-0" data-aos="fade-left">
-                                <h2 class="mb-4 display-5" style="font-family:Alegreya;color:#d4a762;text-align:center;">{{ key }}</h2>
-                              <p>
+    {% if keys != 'None' and keys != 'WiseTeam' %}
+        <!-- First loop for Key Strengths -->
+        {% for key, value in valueses.items %}
+            {% if key == 'Key Strengths' %}
+                <div class="key-strengths-wrapper d-flex justify-content-left">
+                    <div class="column about-extra">
+                        <div class="col-lg-12 pt-5 pt-lg-0" id="key-strengths-container">
+                            <p>
                                 {% with content=value.1|splitter:"." %}
-                                    <ul>
+                                    <ul id="key-strengths-list">
                                         {% for contents in content %}
-                                        <li class="d-flex align-items-center py-3" style="font-family:Bitter;font-size:20px;">
-                                            <span class="bullet bullet-vertical bg-info me-5" ></span>
-                                            {{ contents }}
-                                        </li>
+                                            <li class="strength-item">
+                                                <span class="bullet"></span>
+                                                {{ contents }}
+                                            </li>
                                         {% endfor %}
                                     </ul>
                                 {% endwith %}
-                              </p>
-                            </div>
-                          </div>
-                          {% endfor %}
-                        {% endif %}
-                        {% endif %}
-                        {% endfor %}
-                        {% comment %} {% for keys, valueses in about_dictionary.items %}
-                        {% if keys != 'None' %}
-                        {% if keys != 'WiseTeam' %}
-                        {% for key, value in valueses.items %}
-                        
-                                            <div class="d-md-flex post-entry-2 half">
-                                                <a href="#" class="me-4 thumbnail">
-                                                    <img {% if value.0 != 'None' %} src="{{value.0|url_convertor}}"{% else %} src="{{excel_data.wiseSubProductsDefaultImage | url_convertor}}" {% endif %} alt="Image" width="400px" class="float-start">
-                                                </a>
-                                                <div class="ps-md-2 mt-6 mt-md-8">
-                                                    <h2 class="mb-4 display-5" style="font-family:Alegreya;color:#d4a762;text-align:justify;">{{ key }}</h2>
-                                                    {% with content=value.1|splitter:"." %}
-                                                    <ul>
-                                                        {% for contents in content %}
-                                                        <li class="d-flex align-items-center py-3" style="font-family:Bitter;font-size:20px">
-                                                            <span class="bullet bullet-vertical bg-info me-5" ></span>
-                                                            {{ contents }}</li>
-                                                        {% endfor %}
-                                                    </ul>
-                                                    {% endwith %}
-                                                </div>
-                                            </div>
-                                      
-                        {% endfor %}
-                        {% endif %}
-                        {% endif %}
-                        {% endfor %} {% endcomment %}
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            {% endif %}
+        {% endfor %}
+<br>
+<br>
+        <!-- Second loop for other keys -->
+        {% for key, value in valueses.items %}
+            {% if key != 'Key Strengths' and key != 'None' %}
+                <div class="column about-extra">
+                    <div class="col-lg-12 pt-5 pt-lg-0">
+                        <h2 class="mb-4 display-5" style="font-family: Alegreya; color: #d4a762; text-align: center;">{{ key }}</h2>
+                        <p>
+                            {% with content=value.1|splitter:"." %}
+                                <ul>
+                                    {% for contents in content %}
+                                        <li class="d-flex align-items-center py-3" style="font-family: Bitter; font-size: 20px;">
+                                            <span class="bullet bullet-vertical bg-info"></span>
+                                            {{ contents }}
+                                        </li>
+                                    {% endfor %}
+                                </ul>
+                            {% endwith %}
+                        </p>
+                    </div> 
+                </div>
+            {% endif %}
+        {% endfor %}
+    {% endif %}
+{% endfor %}
+
+
+
                         <hr>
                         <div class="row">
                             <div class="col-md-12">
                                 <div class="container" data-aos="fade-up">
                                     <div class="row justify-content-center">
                                         <div class="col-lg-12 text-center mb-5">
-                                            <h2 class="display-4" style="font-family:Alegreya;color:#d4a762;">Our Team</h2>
+                                            <h2 class="display-4" style="font-family: Alegreya; color: #d4a762;">Our Team</h2>
                                         </div>
                                     </div>
                                     <div class="row">
-                                        <!-- Team members -->
                                         {% for keys, valueses in about_dictionary.items %}
-                                        {% if keys != 'None' %}
-                                        {% if keys == 'WiseTeam' %}
-                                        {% for key, value in valueses.items %}
-                                        <div class="col-lg-4 text-center mb-5">
-                                            <div class="icon-box mt-4 mt-xl-0" id="boxer">
-                                            <img {% if value.0 != 'None' %} src="{{value.0|url_convertor}}"{% else %} src="{{excel_data.wiseSubProductsDefaultImage | url_convertor}}" {% endif %} alt="" class="img-fluid rounded-circle w-50 mb-4" style="margin-top:10px;">
-                                            <h4 style="font-family:Alegreya;color:#d4a762;">{{ key }}</h4>
-                                            <span class="d-block mb-3 text-uppercase">{{ value.2 }}</span>
-                                            {% with content=value.1|splitter:"." %}
-                                            <ul>
-                                                {% for costs in content %}
-                                                <li class="d-flex align-items-center py-2" style="font-family:Bitter;font-size:20px;margin-left:-45px;text-align:justify;">
-                                                    <span class="bullet bullet-vertical bg-info me-4"></span>
-                                                    {{ costs }}</li>
+                                            {% if keys != 'None' and keys == 'WiseTeam' %}
+                                                {% for key, value in valueses.items %}
+                                                    <div class="col-lg-4 text-center mb-5">
+                                                        <div class="icon-box mt-4 mt-xl-0" id="boxer">
+                                                            <img {% if value.0 != 'None' %} src="{{ value.0 | url_convertor }}"{% else %} src="{{ excel_data.wiseSubProductsDefaultImage | url_convertor }}" {% endif %} alt="" class="img-fluid rounded-circle w-50 mb-4" style="margin-top: 10px;">
+                                                            <h4 style="font-family: Alegreya; color: #d4a762;">{{ key }}</h4>
+                                                            <span class="d-block mb-3 text-uppercase">{{ value.2 }}</span>
+                                                            <div id="description_{{ key }}" class="short-description">
+                                                                {% with content=value.1|splitter:"." %}
+                                                                    <ul>
+                                                                        {% for costs in content %}
+                                                                            <li class="d-flex align-items-center py-2" style="font-family: Bitter; font-size: 20px; margin-left: -45px; text-align: justify;">
+                                                                                <span class="bullet bullet-vertical bg-info me-4"></span>
+                                                                                {{ costs }}
+                                                                            </li>
+                                                                        {% endfor %}
+                                                                    </ul>
+                                                                {% endwith %}
+                                                            </div>
+                                                            <a href="#" class="read-more-link" onclick="toggleDescription('{{ key }}'); return false;">Read more</a>
+                                                        </div>
+                                                    </div>
                                                 {% endfor %}
-                                            </ul>
-                                            {% endwith %}
-                                        </div>
-                                        </div>
+                                            {% endif %}
                                         {% endfor %}
-                                        {% endif %}
-                                        {% endif %}
-                                        {% endfor %}
-                                    </div> 
+                                    </div>
                                 </div>
                             </div>
                         </div>
-
-
-                        {% comment %} <div class="col-lg-12 text-center mb-5">
-                            <h2 class="display-4" style="font-family:Alegreya;color:#d4a762;">Our Team</h2>
-                        </div>
-
-
-                        {% for keys, valueses in about_dictionary.items %}
-                        {% if keys != 'None' %}
-                        {% if keys == 'WiseTeam' %}
-                        {% for key, value in valueses.items %}
-
-
-                        <div class="row about-extra">
-                            <div class="col-lg-6 order-1 order-lg-2" data-aos="fade-left">
-                                <img {% if value.0 != 'None' %} src="{{value.0|url_convertor}}"{% else %} src="{{excel_data.wiseSubProductsDefaultImage | url_convertor}}" {% endif %} class="img-fluid rounded-circle w-50 mb-4" alt="">
-                            </div>
-                  
-                            <div class="col-lg-6 pt-4 pt-lg-0 order-2 order-lg-1" data-aos="fade-right">
-                              <h4  style="font-family:Alegreya;color:#d4a762;text-align:justify;">{{ key }}</h4>
-                              <span class="d-block mb-3 text-uppercase">{{ value.2 }}</span>
-                              <p>
-                                {% with content=value.1|splitter:"." %}
-                                            <ul>
-                                                {% for costs in content %}
-                                                <li class="d-flex align-items-center py-3" style="font-family:Bitter;font-size:20px;">
-                                                    <span class="bullet bullet-vertical bg-info me-4"></span>
-                                                    {{ costs }}</li>
-                                                {% endfor %}
-                                            </ul>
-                                            {% endwith %}
-                              </p>
-                            </div>
-                  
-                          </div>
-                          {% endfor %}
-                        {% endif %}
-                        {% endif %}
-                        {% endfor %} {% endcomment %}
-
                     </div>
                 </div>
             </div>
@@ -176,6 +168,52 @@ WTS|About
 </div>
 
 <br>
+
+
+<script>
+    function toggleDescription(index) {
+        var description = document.getElementById('description_' + index);
+        var readMoreLink = description.nextElementSibling;
+        if (description.style.maxHeight === '100px') {
+            description.style.maxHeight = description.scrollHeight + 'px';
+            readMoreLink.innerHTML = 'Read less';
+        } else {
+            description.style.maxHeight = '100px';
+            readMoreLink.innerHTML = 'Read more';
+        }
+    }
+
+    $(document).ready(function () {
+        $(".container").hide().fadeIn(2000);
+    });
+
+</script>
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        const items = document.querySelectorAll('.strength-item');
+        let index = 0;
+    
+        function showNextItem() {
+            // Hide all items
+            items.forEach(item => {
+                item.classList.remove('show');
+            });
+    
+            // Show the current item
+            items[index].classList.add('show');
+    
+            // Increment the index or reset it if it reaches the end
+            index = (index + 1) % items.length;
+        }
+    
+        // Initial call to show the first item
+        showNextItem();
+    
+        // Set an interval to show the next item every 5 seconds
+        setInterval(showNextItem, 5000); // 5 seconds interval
+    });
+    
+    </script>
 
 {% include 'footer.html' %}
 {% endblock body %}

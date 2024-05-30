@@ -7,12 +7,16 @@ WTS|Products
 
 {% block body %}
 
-{% include 'wiseProductCatalogApp/background.html' %}
+{% comment %} {% include 'wiseProductCatalogApp/background.html' %} {% endcomment %}
 {% include "navbar.html" %}
 
 <link href="https://fonts.googleapis.com/css2?family=Alegreya:ital,wght@0,400..900;1,400..900&display=swap" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css2?family=Bitter:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
-
+<style>
+    body{
+        background-color: #012A4A;
+      }
+</style>
 
     <!-- Service Start -->
     <div class="container-fluid service py-4">
@@ -24,7 +28,7 @@ WTS|Products
             <div class="row g-3">
 
                 {% for key in main_sector %}
-                    <div class="col-lg-3 col-md-6 col-sm-12 wow bounceInUp" data-wow-delay="0.1s">
+                    <div class="col-lg-3 col-md-10 col-sm-12 wow bounceInUp" data-wow-delay="0.1s">
                         <div class="bg-light rounded service-item">
                             <div class="service-content d-flex align-items-center justify-content-center p-4">
                                 <div class="service-content-icon text-center">
@@ -54,8 +58,8 @@ WTS|Products
     <br>
     <script>
         $(document).ready(function () {
-            $(".container-fluid").hide().fadeIn(2500);
+            $(".container-fluid").hide().fadeIn(2000);
         });
     </script>
-    {% include 'footer.html' %}
+{% include 'footer.html' %}
 {% endblock body %}

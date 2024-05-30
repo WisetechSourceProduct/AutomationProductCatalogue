@@ -8,6 +8,7 @@ WTS|Contact
 
 {% block body %}
 {% block cdn %}
+<link href="https://fonts.googleapis.com/css2?family=Bitter:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
 <!-- JavaScript -->
 <script src="//cdn.jsdelivr.net/npm/alertifyjs@1.14.0/build/alertify.min.js"></script>
 
@@ -20,57 +21,82 @@ WTS|Contact
 
 
 <style>
+  body{
+    background-color: #012A4A;
+  }
   
+  .swal-title {
+    font-family: Alegreya;
+    
+  }
+
+  .swal-text {
+    font-family: Bitter;
+   
+  }
+  @media (min-width: 576px) {
+    .fs-4 {
+        font-size: 1.5rem; 
+    }
+}
+.contact-us-title {
+  color: white !important; 
+  margin-left:300px; 
+  text-align: center;
+  font-size:35px !important;
+}
+
 </style>
 
 
 <section class="py-3 py-md-5 py-xl-8">
-  <div class="container">
+<div class="container">
     <div class="row">
-      <div class="col-12 col-md-10 col-lg-8">
-        <h3 class="fs-5 mb-2 text-secondary text-uppercase" style="font-family:Alegreya;color:#d4a762;">Contact US</h3>
-      </div>
+        <div class="col-4 col-md-10 col-lg-8 text-center"> <!-- Added text-center class -->
+            <h3 class="fs-4 mb-3 text-secondary text-uppercase contact-us-title" style="font-family:Alegreya;">Contact US</h3> <!-- Applied contact-us-title class -->
+        </div>
     </div>
-  </div>
+</div>
+
 
   <div class="container">
     <div class="row gy-4 gy-md-5 gy-lg-0 align-items-md-center">
-      <div class="col-12 col-lg-6">
-        <div class="card shadow product_data" style="width:1200px;">
+      <div class="col-6 col-md-12 col-lg-12">
+        <div class="card shadow product_data">
           <form method="POST" onsubmit="sendmail(); reset(); return false;">
             {% csrf_token %}
             <div class="row gy-4 gy-xl-5 p-4 p-xl-5">
               <div class="col-12">
-                <label for="fullname" class="form-label"  style="font-family:Alegreya;color:#d4a762;">Full Name <span class="text-danger">*</span></label>
-                <input type="text" class="form-control" id="fullname" name="fullname" required>
+                <label for="fullname" class="form-label"  style="font-family:Alegreya;color:#d4a762;font-size:20px">Full Name <span class="text-danger">*</span></label>
+                <input type="text" class="form-control" id="fullname" name="fullname" placeholder="Enter Your Name" required>
               </div>
-              <div class="col-12 col-md-6">
-                <label for="email" class="form-label" style="font-family:Alegreya;color:#d4a762;">Email <span class="text-danger">*</span></label>
+              <div class="col-12 col-md-12 col-lg-6">
+                <label for="email" class="form-label" style="font-family:Alegreya;color:#d4a762;font-size:20px">Email <span class="text-danger">*</span></label>
                 <div class="input-group">
                   <span class="input-group-text">
                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-envelope" viewBox="0 0 16 16">
                       <path d="M0 4a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V4Zm2-1a1 1 0 0 0-1 1v.217l7 4.2 7-4.2V4a1 1 0 0 0-1-1H2Zm13 2.383-4.708 2.825L15 11.105V5.383Zm-.034 6.876-5.64-3.471L8 9.583l-1.326-.795-5.64 3.47A1 1 0 0 0 2 13h12a1 1 0 0 0 .966-.741ZM1 11.105l4.708-2.897L1 5.383v5.722Z" />
                     </svg>
                   </span>
-                  <input type="email" class="form-control" id="email" name="email" value="" required>
+                  <input type="email" class="form-control" id="email" name="email" placeholder="Enter Your Email" value="" required>
                 </div>
               </div>
-              <div class="col-12 col-md-6">
-                <label for="phone" class="form-label" style="font-family:Alegreya;color:#d4a762;">Phone Number <span class="text-danger">*</span> </label>
+              <div class="col-12 col-md-12 col-lg-6">
+                <label for="phone" class="form-label" style="font-family:Alegreya;color:#d4a762;font-size:20px">Phone Number <span class="text-danger">*</span> </label>
                 <div class="input-group">
                   <span class="input-group-text">
                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-telephone" viewBox="0 0 16 16">
                       <path d="M3.654 1.328a.678.678 0 0 0-1.015-.063L1.605 2.3c-.483.484-.661 1.169-.45 1.77a17.568 17.568 0 0 0 4.168 6.608 17.569 17.569 0 0 0 6.608 4.168c.601.211 1.286.033 1.77-.45l1.034-1.034a.678.678 0 0 0-.063-1.015l-2.307-1.794a.678.678 0 0 0-.58-.122l-2.19.547a1.745 1.745 0 0 1-1.657-.459L5.482 8.062a1.745 1.745 0 0 1-.46-1.657l.548-2.19a.678.678 0 0 0-.122-.58L3.654 1.328zM1.884.511a1.745 1.745 0 0 1 2.612.163L6.29 2.98c.329.423.445.974.315 1.494l-.547 2.19a.678.678 0 0 0 .178.643l2.457 2.457a.678.678 0 0 0 .644.178l2.189-.547a1.745 1.745 0 0 1 1.494.315l2.306 1.794c.829.645.905 1.87.163 2.611l-1.034 1.034c-.74.74-1.846 1.065-2.877.702a18.634 18.634 0 0 1-7.01-4.42 18.634 18.634 0 0 1-4.42-7.009c-.362-1.03-.037-2.137.703-2.877L1.885.511z" />
                     </svg>
                   </span>
-                  <input type="tel" class="form-control" id="phone" name="phone" value="" >
+                  <input type="tel" class="form-control" id="phone" name="phone" placeholder="Enter Your Phone Number" value="" required>
                 </div>
               </div>
               <div class="col-12">
                 <div class="input-group">
-                    <span class="form-label" style="font-family:Alegreya;color:#d4a762;">Needed Services <span class="text-danger">*</span></span>
+                    <span class="form-label" style="font-family:Alegreya;color:#d4a762;font-size:20px">Needed Services <span class="text-danger">*</span></span>
                     <div class="input-group">
-                        <select class="form-select" name="service" onchange="updateProducts(this)">
+                        <select class="form-select" name="service" onchange="updateProducts(this)" required>
                             <option>Please choose</option>
                             {% with added_values=main_sector_data|init_list %}
                                 {% for sector in main_sector_data %}
@@ -90,8 +116,8 @@ WTS|Contact
                 </div>
                 <br>
                 <div class="w-full dis-none js-show-service">
-                    <div class="wrap-contact100-form-radio" id="product-radio">
-                        <span class="label-input100" style="font-family:Alegreya;color:#d4a762;">What type of services are Needed ?</span>
+                    <div class="wrap-contact100-form-radio" id="product-radio" required>
+                        <span class="label-input100" style="font-family:Alegreya;color:#d4a762;font-size:20px">What type of services are Needed ?</span>
                         <div id="product-options">
                       
                         </div>
@@ -100,8 +126,8 @@ WTS|Contact
               </div>
               <br>
               <div class="col-12">
-                <label for="message" class="form-label" style="font-family:Alegreya;color:#d4a762;">Message <span class="text-danger">*</span></label>
-                <textarea class="form-control" id="message" name="message" rows="3" required></textarea>
+                <label for="message" class="form-label" style="font-family:Alegreya;color:#d4a762;font-size:20px">Message <span class="text-danger">*</span></label>
+                <textarea class="form-control" id="message" name="message" rows="3" placeholder="Enter Message" required></textarea>
               </div>
               <br>
               <div class="col-12">
@@ -119,22 +145,6 @@ WTS|Contact
   </div>
 </section>
 
-{% comment %} <script src="https://smtpjs.com/v3/smtp.js"></script>
-<script>
-  function sendmail(){
-    Email.send({
-      Host : "smtp.gmail.com",
-      Username : "karvannan200016@gmail.com",
-      Password : "52784425",
-      To : 'karvannanwts@gmail.com',
-      From : document.getElementById("email").value,
-      Subject : "New Client",
-      Body : "And this is the body"
-  }).then(
-    message => alert(message)
-  );
-  }
-</script> {% endcomment %}
 <script>
   function updateProducts(select) {
       var selectedService = select.value;
@@ -186,11 +196,14 @@ WTS|Contact
     icon: "error",
     title: "Oops...",
     text: "{{ error }}",
+    customClass: {
+      title: 'swal-title',
+      text: 'swal-text'
+    }
   });
   {% endfor %}
   {% endif %}
 </script>
-
 <script>
   {% if mail %}
     {% if mail == "Email sent successfully!" %}
@@ -208,7 +221,14 @@ WTS|Contact
     {% endif %}
   {% endif %}
 </script>
-
-
+<script>
+$(document).ready(function () {
+  $(".container").hide().fadeIn(2000);
+});
+</script>
 {% include 'footer.html' %}
 {% endblock %}
+<!--       _
+       .__(.)< (MEOW)
+        \___)   
+ ~~~~~~~~~~~~~~~~~~-->

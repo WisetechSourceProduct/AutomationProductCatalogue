@@ -9,10 +9,23 @@
     p{
         color:black;
     }
-        
+    @media (min-width: 768px) and (max-width: 991px) {
+        .container-fluid.footer {
+            max-width: 100%;
+            bottom: 0;
+            position: fixed;
+            width: 100%;
+            left: 0; /* Ensure the footer is aligned to the left */
+            z-index: 100;
+        }
+        body {
+            padding-bottom: 450px; /* Adjust the value as needed to prevent overlap with the footer */
+        }
+    }
+    
 </style>
 <link href="https://fonts.googleapis.com/css2?family=Alegreya:ital,wght@0,400..900;1,400..900&display=swap" rel="stylesheet">
-<div class="container-fluid footer foot py-9 my-6 mb-0 wow bounceInUp text-center" style = "padding :1%;background-color:#f5f5dc;" data-wow-delay="0.1s">
+<div class="container-fluid footer foot py-9 my-6 mb-0 wow bounceInUp text-center" style = "padding :1%;background-color:#f5f5dc;" id="footer" data-wow-delay="0.1s">
     <div class="container">
         <div class="row">
             <div class="col-lg-6 col-md-18">

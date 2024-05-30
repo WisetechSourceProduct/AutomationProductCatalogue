@@ -9,7 +9,7 @@ WTS|Products
 
 {% block body %}
 
-{% include 'wiseProductCatalogApp/background.html' %}
+{% comment %} {% include 'wiseProductCatalogApp/background.html' %} {% endcomment %}
 {% include "navbar.html" %}
 
 {% comment %} Google font {% endcomment %}
@@ -17,6 +17,11 @@ WTS|Products
 <link href="https://fonts.googleapis.com/css2?family=Bitter:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
 
 {% comment %} Products page start {% endcomment %}
+<style>
+    body{
+        background-color: #012A4A;
+      }
+</style>
 <div class="container-fluid project py-5 mb-5">
     <div class="container">
         <div class="text-center mx-auto pb-5 wow fadeIn" data-wow-delay=".3s" style="max-width: 700px;">
@@ -28,17 +33,16 @@ WTS|Products
 
                 {% for key, values in subproducts.items %}
                 {% if key != 'None' %}
-                    <div class="col-md-6 col-lg-4 wow fadeIn" data-wow-delay=".3s">
+                    <div class="col-md-10 col-lg-4 wow fadeIn" data-wow-delay=".3s">
                         <div class="project-item">
                             <div class="project-img">
                                 <!--<img src="{% static 'images/AI Data Extractor.png' %}" style="height:299px;" class="img-fluid w-100 rounded" alt="">-->
-                                <img {% if values.0 != 'None' %} src="{{values.0|url_convertor}}"{% else %} src="{{excel_data.wiseSubProductsDefaultImage | url_convertor}}" {% endif %} style="height:299px;" class="img-fluid w-100 rounded" alt="">
+                                <img {% if values.0 != 'None' %} src="{{values.0|url_convertor}}"{% else %} src="{{excel_data.wiseSubProductsDefaultImage |url_convertor}}" {% endif %} style="height:299px;" class="img-fluid w-100 rounded" alt="">
                                 <div class="project-content">
                                     <a href="{% url 'productdetails' productname key %}" class="text-center">
                                         
                                     {% comment %} <a href="#" class="text-center"> {% endcomment %}
                                     <h4 class="text-secondary" style="font-family:Bitter;font-size:19px;">{{key}}</h4>
-                                        <!--<p class="m-0 text-white">Web Analysis</p>-->
                                     </a>
                                 </div>
                             </div>
@@ -53,5 +57,10 @@ WTS|Products
 </div>
 
 {% comment %} Product page End {% endcomment %}
+<script>
+    $(document).ready(function () {
+        $(".container-fluid").hide().fadeIn(2000);
+    });
+</script>
 {% include 'footer.html' %}
 {% endblock body %}

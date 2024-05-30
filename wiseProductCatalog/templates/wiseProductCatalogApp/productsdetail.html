@@ -13,7 +13,7 @@ WTS|Products
 {% endblock %}
 
 {% include "navbar.html" %}
-{% include 'wiseProductCatalogApp/background.html' %}
+{% comment %} {% include 'wiseProductCatalogApp/background.html' %} {% endcomment %}
 <link href="https://fonts.googleapis.com/css2?family=Alegreya:ital,wght@0,400..900;1,400..900&display=swap" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css2?family=Bitter:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
 
@@ -57,7 +57,12 @@ WTS|Products
               width: 25px;
           }
       }
-      
+      body{
+        background-color: #012A4A;
+      }
+      h2 i {
+        color: #228B22;
+      }
 </style>
 
 <div class="py-5">
@@ -70,7 +75,13 @@ WTS|Products
                             <div class="col-md-4" >
                                 <div style="position:sticky;top:0px;padding-bottom:30px;">
                                 {% comment %} <img src="{% static 'images/AI Data Extractor.png' %}" class="w-100 h-100 img-fluid" alt="image"> {% endcomment %}
-                                <img {% if value.0 != 'None' %} src="{{subproducts.0 |url_convertor}}"{% else %} src="{{excel_data.wiseSubProductsDefaultImage | url_convertor}}" {% endif %} style="height:299px;" class="img-fluid w-100 rounded" alt="">
+                                {% if subproducts.0 != 'None'%}
+                                
+                                <img src="{{ subproducts.0 |url_convertor }}" style="height:299px;" class="img-fluid w-100 rounded" alt="">
+                                {% else %}
+                                <img src="{{excel_data.wiseSubProductsDefaultImage|url_convertor}}" style="height:299px;" class="img-fluid w-100 rounded" alt="">
+                                {% endif %}
+
                             <div class="stars" style="margin-left:50px;margin-top;-30:">
                                 <input type="radio" id="star1" name="rating" value="1" /><input type="radio" id="star2" name="rating" value="2" /><input type="radio" id="star3" name="rating" value="3" /><input type="radio" id="star4" name="rating" value="4" /><input type="radio" id="star5" name="rating" value="5" />
                                 
@@ -173,22 +184,7 @@ WTS|Products
                                     {% endwith %}
                     </div>
 
-                    <!--
-                        <div class="col-md-15">
-                            <h2 class="card-body" style="font-family:Alegreya;color: #d4a762;">Features</h2><hr>
-                            <div class="d-flex flex-column">
-
-                                
-                                
-                                    {% with features=subproducts.3|splitter:"." %}
-                                        {% for feature in features %}
-                                        <li class="d-flex align-items-center py-2"  style="font-family:Bitter;">
-                                            <span class="bullet bullet-vertical bg-info me-5"></span>
-                                            {{feature}}</li>
-                                        {% endfor %}
-                                    {% endwith %}
-                            </div>
-                    -->
+                    
                     
                     <h2 class="card-body" style="font-family:Alegreya;color: #d4a762;">Features</h2>
                         <hr>
@@ -209,35 +205,34 @@ WTS|Products
                             {% endfor %}
                         </div>
                         
-                    
 
                         <br><br><br>
-
-                        <div id="carouselExampleAutoplaying" class="carousel slide" data-bs-ride="carousel">
+                        
+                        <div id="carouselExampleInterval" class="carousel slide" data-bs-ride="carousel">
+                            
                             <div class="carousel-inner">
-                                <div class="carousel-item active">
-                                    <video  width="1240" height="500" controls="play pause volume mute seek fullscreen loop download picture-in-picture">
-                                        <source src="{% static 'images/Calming relaxing music 30 seconds_.mp4' %}" type="video/mp4" style="text-align:center;">
-                                        Your browser does not support the video tag.
+                                
+                                {% for image_url in image_urls %}
+                                <div class="carousel-item active" data-bs-interval="10000" style="overflow: hidden;
+                                position: relative;">
+                                <img src="{% if image_url %}{% static image_url %}{% endif %}" alt="Image" style="height:500px;" class="d-block w-100">
+                                </div>
+                                {% endfor %}
+                                
+                                {% for videos_url in video_urls %}
+                                <div class="carousel-item" data-bs-interval="10000">
+                                        <video style="height:500px;" class="d-block w-100" controls> <source src="{% static videos_url %}" style="width: 500px; height: auto; margin: 10px;" controls></video>
                                     </video>
                                 </div>
-                                {% comment %} <div class="carousel-item">
-                                    <img class="carousel-img" src="{% static 'images/image_2024_04_03T09_05_51_792Z.png' %}" class="d-block" alt="Corousel Image">
-                                </div> {% endcomment %}
-                                <div class="carousel-item" style="width:1240;height:500;text-align:center;">
-                                    <img class="carousel-img" src="{% static 'images/image_2024_04_03T09_05_58_690Z.png' %}" class="d-block" alt="Corousel Image">
-                                </div>
-                                <div class="carousel-item" style="width:1240;height:500;text-align:center;">
-                                    <img class="carousel-img" src="{% static 'images/image_2024_04_03T09_09_12_449Z.png' %}" class="d-block" alt="Corousel Image">
-                                </div>
+                                {% endfor %}
+                                
                             </div>
-                                                <!-- Control Buttons -->
-                            <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleAutoplaying" data-bs-slide="prev">
-                                <i class="bi-arrow-left-circle-fill"></i>
+                            <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleInterval" data-bs-slide="prev">
+                                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
                                 <span class="visually-hidden">Previous</span>
                             </button>
-                            <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleAutoplaying" data-bs-slide="next" >
-                                <i class="bi-arrow-right-circle-fill"></i>
+                            <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleInterval" data-bs-slide="next">
+                                <span class="carousel-control-next-icon" aria-hidden="true"></span>
                                 <span class="visually-hidden">Next</span>
                             </button>
                         </div>
@@ -246,15 +241,12 @@ WTS|Products
                             <img class="modal-content h-55" id="img01">
                             <div id="caption"></div>
                         </div>
-                        <div class = "carousel-item">
-                            <video  id="myImg"  width="1240" height="500" controls="play pause">
-                                <source src="/media/PUBG MOBILE Global Launch Trailer.mp4" type="video/mp4">
-                            </video>
-                        </div><br><br>
+                        <br><br>
                     
-                        <div class="text-start" style="text-align:center;margin-left:500px;">
-                            <a href="{% url 'contact' %}" class="btn bg-primary text-white py-3 px-5" type="button" >Demo</a>
+                        <div class="text-center demo-button-container">
+                            <a href="{% url 'contact' %}" class="btn bg-primary text-white py-3 px-5" type="button">Demo</a>
                         </div>
+                        
                         </div>
                         
                     </div>
@@ -265,7 +257,6 @@ WTS|Products
         
     </div>
 </div>
-
 {% include 'footer.html' %}
 
 <script>
@@ -293,6 +284,11 @@ WTS|Products
     span.onclick = function() { 
         modal.style.display = "none";
     }
+</script>
+<script>
+    $(document).ready(function () {
+        $(".container").hide().fadeIn(2000);
+    });
 </script>
 
 {% endblock body %}
