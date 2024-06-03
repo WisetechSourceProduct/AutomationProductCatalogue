@@ -4,7 +4,6 @@ import pandas as pd
 import re
 import os
 from datetime import datetime
-import linecache
 import logging
 from django.conf import settings
 import smtplib
